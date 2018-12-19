@@ -8,6 +8,12 @@
 	<version>1.0-SNAPSHOT</version>
 	<packaging>pom</packaging>
 
+
+	<properties>
+        <source>1.8</source>
+        <target>1.8</target>
+    </properties>
+
 	<modules>
 		<!-- 基础 – 入门篇 -->
 		<!-- Spring Boot 之 HelloWorld 详解 -->
