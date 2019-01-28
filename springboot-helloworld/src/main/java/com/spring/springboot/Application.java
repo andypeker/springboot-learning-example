@@ -3,6 +3,10 @@ package com.spring.springboot;
 import ch.qos.logback.classic.servlet.LogbackServletContainerInitializer;
 import com.spring.springboot.initializer.*;
 import com.spring.springboot.appListener.*;
+import com.spring.springboot.initializer2.MyApplicationContextInitializer1;
+import com.spring.springboot.initializer2.MyApplicationContextInitializer2;
+import com.spring.springboot.initializer1.MyWebApplicationInitializer;
+import com.spring.springboot.initializer1.MyWebApplicationInitializer2;
 import com.spring.springboot.mvcConfigure.WebConfig;
 import com.spring.springboot.mvcConfigure.WebConfig2;
 import com.spring.springboot.saRunListener.MySprAppRunLsnr;
@@ -10,6 +14,7 @@ import com.spring.springboot.scListener.MyListener;
 import com.spring.springboot.scListener.MyServletContextListener;
 import com.spring.springboot.autocfg.HelloAutoConfiguration;
 import org.apache.catalina.startup.ContextConfig;
+import org.apache.catalina.startup.Tomcat;
 import org.apache.catalina.startup.WebappServiceLoader;
 import org.apache.tomcat.websocket.server.WsContextListener;
 import org.apache.tomcat.websocket.server.WsSci;
@@ -44,6 +49,7 @@ import org.springframework.boot.autoconfigure.jersey.JerseyAutoConfiguration;
 import org.springframework.boot.autoconfigure.jmx.JmxAutoConfiguration;
 import org.springframework.boot.autoconfigure.logging.AutoConfigurationReportLoggingInitializer;
 import org.springframework.boot.autoconfigure.mongo.MongoAutoConfiguration;
+import org.springframework.boot.autoconfigure.orm.jpa.HibernateJpaAutoConfiguration;
 import org.springframework.boot.autoconfigure.security.SecurityAutoConfiguration;
 import org.springframework.boot.autoconfigure.security.SecurityFilterAutoConfiguration;
 import org.springframework.boot.autoconfigure.security.oauth2.client.EnableOAuth2Sso;
@@ -128,10 +134,11 @@ import java.util.ServiceLoader;
  */
 // Spring Boot 应用的标识
 //@SpringBootApplication
-//@Configuration
+@Configuration
 @ComponentScan
-@EnableAutoConfiguration
-//@EnableAutoConfiguration(exclude = Tomcat.class)
+//@EnableAutoConfiguration
+@EnableAutoConfiguration(exclude = {/*Tomcat.class, */DataSourceAutoConfiguration.class})
+//        {DataSourceAutoConfiguration.class, HibernateJpaAutoConfiguration.class}
 public class Application {
 
     public static void main(String[] args) {
@@ -229,8 +236,6 @@ public class Application {
         //  ############################ Loader
         ServiceLoader svcLdr;
         ClassLoader clsLdr;
-        SpringFactoriesLoader spFacLdr;
-
         //  4
         SpringBootConfiguration fwefwe5367537357;
 
