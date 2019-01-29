@@ -24,4 +24,12 @@ public class RootConfig extends SpringBootServletInitializer {
 
 //    ......
 //    ......
+    public someotherfunc(){
+        new SpringApplicationBuilder()
+          .parent(ParentConfig.class).web(WebApplicationType.NONE)
+          .child(WebConfig.class).web(WebApplicationType.SERVLET)
+          .sibling(RestConfig.class).web(WebApplicationType.SERVLET)
+          .run(args);
+    }
+
 }
