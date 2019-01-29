@@ -13,10 +13,13 @@ import org.springframework.core.annotation.Order;
 @Configuration
 public class RootConfig extends SpringBootServletInitializer {
 
-
     @Override
     protected SpringApplicationBuilder configure(SpringApplicationBuilder application) {
-        return  application.sources(ConsoleWebApplication.class).child(WebConfig.class).web(true).sibling(AjaxConfig.class).web(true);
+        return application.sources(ConsoleWebApplication.class)
+                .child(WebConfig.class)
+                .web(true)
+                .sibling(AjaxConfig.class)
+                .web(true);
     }
 
 //    ......
