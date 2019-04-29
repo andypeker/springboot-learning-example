@@ -106,10 +106,7 @@ import org.springframework.validation.beanvalidation.BeanValidationPostProcessor
 import org.springframework.web.SpringServletContainerInitializer;
 import org.springframework.web.WebApplicationInitializer;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.context.AbstractContextLoaderInitializer;
-import org.springframework.web.context.ContextCleanupListener;
-import org.springframework.web.context.ContextLoader;
-import org.springframework.web.context.ContextLoaderListener;
+import org.springframework.web.context.*;
 import org.springframework.web.context.support.GenericWebApplicationContext;
 import org.springframework.web.context.support.ServletContextAwareProcessor;
 import org.springframework.web.servlet.DispatcherServlet;
@@ -792,6 +789,11 @@ public class Application {
                 ContextRefreshedEvent g30m093jg0934;
                 ContextStartedEvent go3ig093094gk;
                 ContextStoppedEvent go3i4g093049g0k;
+
+        //  ############################ Servlet Configure
+
+        ConfigurableWebEnvironment rgrgrgrg;
+
 
         //  ############################ Servlet Configure
 
