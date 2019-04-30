@@ -683,7 +683,7 @@ public class Application {
          * 有些 Listener 监控 Application 的生命 --- ApplicationListener;
          *
          * 有些 Initializer 初始化 ServletContainer --- ServletContainerInitializer(SC + WebApplicationInitializer[])；
-         * 有些 Initializer 初始化 WebApplication --- WebApplicationInitializer(SC);
+         * 有些 Initializer 初始化 ServletContext and WebApplication --- WebApplicationInitializer(SC);
          * 有些 Initializer 初始化 ServletContext[or NOT WebApplication] --- ServletContextInitializer(SC)；
          * 有些 Initializer 初始化 [Web]ApplicationContext --- ApplicationContextInitializer(AC)；
          * 
