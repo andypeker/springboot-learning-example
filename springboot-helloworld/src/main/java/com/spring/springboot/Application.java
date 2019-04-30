@@ -95,6 +95,8 @@ import org.springframework.context.event.*;
 import org.springframework.context.support.AbstractApplicationContext;
 import org.springframework.context.support.GenericApplicationContext;
 import org.springframework.context.support.PropertySourcesPlaceholderConfigurer;
+import org.springframework.core.env.AbstractEnvironment;
+import org.springframework.core.env.ConfigurableEnvironment;
 import org.springframework.core.env.Environment;
 import org.springframework.core.io.support.SpringFactoriesLoader;
 import org.springframework.data.web.config.EnableSpringDataWebSupport;
@@ -109,6 +111,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.context.*;
 import org.springframework.web.context.support.GenericWebApplicationContext;
 import org.springframework.web.context.support.ServletContextAwareProcessor;
+import org.springframework.web.context.support.StandardServletEnvironment;
 import org.springframework.web.servlet.DispatcherServlet;
 import org.springframework.web.servlet.config.annotation.*;
 import org.springframework.web.servlet.support.AbstractAnnotationConfigDispatcherServletInitializer;
@@ -792,10 +795,12 @@ public class Application {
 
         //  ############################ Servlet Configure
 
-        ConfigurableWebEnvironment rgrgrgrg;
+        ConfigurableEnvironment cfgenv;
+            AbstractEnvironment afefeee;
+            ConfigurableWebEnvironment rgrgrgrg;
+                StandardServletEnvironment erf9023jf0923;
 
-
-        //  ############################ Servlet Configure
+    //  ############################ Servlet Configure
 
         ContextLoader gregerg34gj093j409g;
         ServiceLoader oinepirg0394jg03j94;
