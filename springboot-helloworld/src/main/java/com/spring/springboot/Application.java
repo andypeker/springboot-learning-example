@@ -619,7 +619,7 @@ public class Application {
          * ApplicationContextInitializer
          *
          * //1
-         * public interface ServletContextInitializer :
+         * interface ServletContextInitializer :
          *
          * Interface used to configure a Servlet 3.0+ context programmatically. Unlike WebApplicationInitializer,
          * classes that implement this interface (and do not implement WebApplicationInitializer) will not be
@@ -630,7 +630,7 @@ public class Application {
          * and not the Servlet container.
          *
          * //2
-         * public interface WebApplicationInitializer :
+         * interface WebApplicationInitializer :
          *
          * Interface to be implemented in Servlet 3.0+ environments in order to configure the ServletContext
          * programmatically -- as opposed to (or possibly in conjunction with) the traditional web.xml-based
@@ -641,7 +641,7 @@ public class Application {
          * on this bootstrapping mechanism.
          *
          * //3
-         * public interface ApplicationContextInitializer<C extends ConfigurableApplicationContext>
+         * interface ApplicationContextInitializer<C extends ConfigurableApplicationContext>
          *
          * Callback interface for initializing a Spring ConfigurableApplicationContext prior to being refreshed.
          *
@@ -653,6 +653,26 @@ public class Application {
          * ApplicationContextInitializer processors are encouraged to detect whether Spring's Ordered interface has
          * been implemented or if the @Order annotation is present and to sort instances accordingly if so prior to
          * invocation.
+         * */
+
+        /**
+         * interface ServletContainerInitializer :
+         *
+         * The ServletContainerInitializer implementation is intented to be bundled in a JAR file which is in turn been
+         * dropped in /WEB-INF/lib of the webapp. The JAR file itself should have
+         * a /META-INF/services/javax.servlet.ServletContainerInitializer file containing the FQN of the
+         * ServletContainerInitializer implementation in the JAR. Please note that this file should thus not be
+         * placed in the webapp itself!
+         *
+         * This allows webapp module developers to let their JAR file hook on webapp's startup and shutdown cycle.
+         * It's true that they could also have used a ServletContextListener with @WebListener for this, but this
+         * won't work if the webapp's own web.xml file has a metadata-complete="true" attribute set in <web-app>
+         *     which means that the webapp shouldn't scan JARs for annotations (which saves startup time).
+         *
+         * That the ServletContainerInitializer doesn't work in your particular case can only mean that you're
+         * actually not developing a module JAR file, but just a part integral to your own web application. In
+         * that case, the ServletContainerInitializer is useless for you and you should be using ServletContextListener instead.
+         *
          * */
 
         /**
