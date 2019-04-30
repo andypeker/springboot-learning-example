@@ -264,7 +264,6 @@ public class Application {
         ServerPortInfoApplicationContextInitializer fwefepfpe;
         ApplicationContextInitializer gergerg34g34g34;
         BackgroundPreinitializer gwegwegweg;
-        ApplicationContextInitializer fwefwefwef234234;
 
         //  6
         AutoConfigurationImportFilter gwefwef;
@@ -612,6 +611,49 @@ public class Application {
             //  AbstractFilterRegistrationBean rr34g03j4g09j394g;
                     FilterRegistrationBean g34gj0394g034gk09;
                     DelegatingFilterProxyRegistrationBean g0349gj3094g09;
+
+        /**
+         * ServletContainerInitializer
+         * ServletContextInitializer
+         * WebApplicationInitializer
+         * ApplicationContextInitializer
+         *
+         * //1
+         * public interface ServletContextInitializer :
+         *
+         * Interface used to configure a Servlet 3.0+ context programmatically. Unlike WebApplicationInitializer,
+         * classes that implement this interface (and do not implement WebApplicationInitializer) will not be
+         * detected by SpringServletContainerInitializer and hence will not be automatically bootstrapped by
+         * the Servlet container.
+         *
+         * This interface is primarily designed to allow ServletContextInitializers to be managed by Spring
+         * and not the Servlet container.
+         *
+         * //2
+         * public interface WebApplicationInitializer :
+         *
+         * Interface to be implemented in Servlet 3.0+ environments in order to configure the ServletContext
+         * programmatically -- as opposed to (or possibly in conjunction with) the traditional web.xml-based
+         * approach.
+         *
+         * Implementations of this SPI will be detected automatically by SpringServletContainerInitializer,
+         * which itself is bootstrapped automatically by any Servlet 3.0 container. See its Javadoc for details
+         * on this bootstrapping mechanism.
+         *
+         * //3
+         * public interface ApplicationContextInitializer<C extends ConfigurableApplicationContext>
+         *
+         * Callback interface for initializing a Spring ConfigurableApplicationContext prior to being refreshed.
+         *
+         * Typically used within web applications that require some programmatic initialization of the application
+         * context. For example, registering property sources or activating profiles against the context's environment.
+         * See ContextLoader and FrameworkServlet support for declaring a "contextInitializerClasses" context-param
+         * and init-param, respectively.
+         *
+         * ApplicationContextInitializer processors are encouraged to detect whether Spring's Ordered interface has
+         * been implemented or if the @Order annotation is present and to sort instances accordingly if so prior to
+         * invocation.
+         * */
 
         /**
          * TODO 搞搞清楚
