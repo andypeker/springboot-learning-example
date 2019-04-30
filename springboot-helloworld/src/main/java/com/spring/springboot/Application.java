@@ -434,7 +434,8 @@ public class Application {
          *
          * Important !
          * Spring Boot Reference Guide 里明确说了，嵌入 的 Servlet 容器，默认不执行 ServletContainerInitializer
-         *（也就没机会执行 WebApplicationInitializer 那一套）；取而代之的，就是 ServletContextInitializer 接口。
+         *（也就没机会执行 WebApplicationInitializer 那一套）；取而代之的，就是 ServletContextInitializer 接口；
+         * Have another word, 如果 执行了 ServletContainerInitializer， 则 WebApplicationInitializer 会被识别 并 执行。
          *
          * %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
          *
@@ -707,6 +708,8 @@ public class Application {
          * SpringBoot 中，默认的 WebApplicationInitializer 似乎并不会被执行；
          * 可以使用 ServletContextInitializer 和 SpringBootServletInitializer 代替，
          * 再 配合使用 FilterRegistrationBean, ServletRegistrationBean 和 ServletListenerRegistrationBean。
+         *  |
+         *  ---> BullShit !
          * */
 
         /**
