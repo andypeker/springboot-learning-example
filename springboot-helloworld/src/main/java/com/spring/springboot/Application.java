@@ -684,7 +684,7 @@ public class Application {
          *
          * 有些 Initializer 初始化 ServletContainer --- ServletContainerInitializer(SC + WebApplicationInitializer[])；
          * 有些 Initializer 初始化 WebApplication --- WebApplicationInitializer(SC);
-         * 有些 Initializer 初始化 ServletContext/WebApplication --- ServletContextInitializer(SC)；
+         * 有些 Initializer 初始化 ServletContext[or NOT WebApplication] --- ServletContextInitializer(SC)；
          * 有些 Initializer 初始化 [Web]ApplicationContext --- ApplicationContextInitializer(AC)；
          * 
          * ServletContextInitializer 和 WebApplicationInitializer 效果相同，用法不同；都是以 SC 为参数，通过各种方式，构造 SC 的属性：两个上下文，以及 Filters 和 Listeners;
