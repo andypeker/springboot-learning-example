@@ -967,7 +967,7 @@ public class Application {
         *
         * spring.factories 文件的类型：
         *
-        * （默认情况下，springboot 启动时，SpringFactoriesLoader 拉入的类型的顺讯如下，某几个多次出现）
+        * （默认情况下，springboot 启动时，SpringFactoriesLoader 拉入的类型的顺序如下，某几个多次出现）
         * ApplicationContextInitializer
         * ApplicationListener
         * SpringApplicationRunListener
