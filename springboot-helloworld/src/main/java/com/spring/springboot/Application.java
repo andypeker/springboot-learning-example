@@ -615,11 +615,16 @@ public class Application {
 
         /**
          * ServletContainerInitializer
+         *
          * ServletContextInitializer
          * WebApplicationInitializer
          * ApplicationContextInitializer
          *
          * //1
+         * interface ServletContainerInitializer :
+         * has one implement class SpringServletContainerInitializer.
+         *
+         * //2
          * interface ServletContextInitializer :
          *
          * Interface used to configure a Servlet 3.0+ context programmatically. Unlike WebApplicationInitializer,
@@ -630,7 +635,7 @@ public class Application {
          * This interface is primarily designed to allow ServletContextInitializers to be managed by Spring
          * and not the Servlet container.
          *
-         * //2
+         * //3
          * interface WebApplicationInitializer :
          *
          * Interface to be implemented in Servlet 3.0+ environments in order to configure the ServletContext
@@ -641,10 +646,10 @@ public class Application {
          * which itself is bootstrapped automatically by any Servlet 3.0 container. See its Javadoc for details
          * on this bootstrapping mechanism.
          *
-         * //3
+         * //4
          * interface ApplicationContextInitializer<C extends ConfigurableApplicationContext>
          *
-         * Callback interface for initializing a Spring ConfigurableApplicationContext prior to being refreshed.
+         * Callback interface for initializing a Spring ConfigurableApplicationContext prior to being refreshed. [line 600~601]
          *
          * Typically used within web applications that require some programmatic initialization of the application
          * context. For example, registering property sources or activating profiles against the context's environment.
