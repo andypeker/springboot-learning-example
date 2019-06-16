@@ -1,20 +1,19 @@
 package com.spring.springboot;
 
 import ch.qos.logback.classic.servlet.LogbackServletContainerInitializer;
-import com.spring.springboot.initializer.*;
 import com.spring.springboot.appListener.*;
-import com.spring.springboot.initializer2.MyApplicationContextInitializer1;
-import com.spring.springboot.initializer2.MyApplicationContextInitializer2;
+import com.spring.springboot.autocfg.HelloAutoConfiguration;
+import com.spring.springboot.initializer.CustomServletContainerInitializer;
+import com.spring.springboot.initializer.CustomServletContainerInitializer2;
 import com.spring.springboot.initializer1.MyWebApplicationInitializer;
 import com.spring.springboot.initializer1.MyWebApplicationInitializer2;
+import com.spring.springboot.initializer2.MyApplicationContextInitializer1;
+import com.spring.springboot.initializer2.MyApplicationContextInitializer2;
 import com.spring.springboot.mvcConfigure.WebConfig;
 import com.spring.springboot.mvcConfigure.WebConfig2;
 import com.spring.springboot.saRunListener.MySprAppRunLsnr;
 import com.spring.springboot.scListener.MyListener;
 import com.spring.springboot.scListener.MyServletContextListener;
-import com.spring.springboot.autocfg.HelloAutoConfiguration;
-import org.apache.catalina.startup.ContextConfig;
-import org.apache.catalina.startup.Tomcat;
 import org.apache.catalina.startup.WebappServiceLoader;
 import org.apache.tomcat.websocket.server.WsContextListener;
 import org.apache.tomcat.websocket.server.WsSci;
@@ -23,17 +22,15 @@ import org.springframework.aop.framework.autoproxy.AbstractBeanFactoryAwareAdvis
 import org.springframework.beans.factory.config.*;
 import org.springframework.beans.factory.support.BeanDefinitionRegistryPostProcessor;
 import org.springframework.boot.*;
-import org.springframework.boot.actuate.autoconfigure.EndpointWebMvcChildContextConfiguration;
 import org.springframework.boot.actuate.endpoint.mvc.JolokiaMvcEndpoint;
-import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
-import org.springframework.boot.autoconfigure.SpringBootApplication;
-import org.springframework.boot.autoconfigure.condition.ConditionalOnBean;
-import org.springframework.boot.autoconfigure.context.ConfigurationPropertiesAutoConfiguration;
 import org.springframework.boot.autoconfigure.*;
 import org.springframework.boot.autoconfigure.admin.SpringApplicationAdminJmxAutoConfiguration;
 import org.springframework.boot.autoconfigure.cache.CacheAutoConfiguration;
 import org.springframework.boot.autoconfigure.cassandra.CassandraAutoConfiguration;
-import org.springframework.boot.autoconfigure.condition.*;
+import org.springframework.boot.autoconfigure.condition.ConditionalOnBean;
+import org.springframework.boot.autoconfigure.condition.ConditionalOnClass;
+import org.springframework.boot.autoconfigure.condition.ConditionalOnWebApplication;
+import org.springframework.boot.autoconfigure.context.ConfigurationPropertiesAutoConfiguration;
 import org.springframework.boot.autoconfigure.context.MessageSourceAutoConfiguration;
 import org.springframework.boot.autoconfigure.data.jpa.EntityManagerFactoryDependsOnPostProcessor;
 import org.springframework.boot.autoconfigure.data.mongo.MongoClientDependsOnBeanFactoryPostProcessor;
@@ -49,7 +46,6 @@ import org.springframework.boot.autoconfigure.jersey.JerseyAutoConfiguration;
 import org.springframework.boot.autoconfigure.jmx.JmxAutoConfiguration;
 import org.springframework.boot.autoconfigure.logging.AutoConfigurationReportLoggingInitializer;
 import org.springframework.boot.autoconfigure.mongo.MongoAutoConfiguration;
-import org.springframework.boot.autoconfigure.orm.jpa.HibernateJpaAutoConfiguration;
 import org.springframework.boot.autoconfigure.security.SecurityAutoConfiguration;
 import org.springframework.boot.autoconfigure.security.SecurityFilterAutoConfiguration;
 import org.springframework.boot.autoconfigure.security.oauth2.client.EnableOAuth2Sso;
@@ -75,21 +71,18 @@ import org.springframework.boot.context.embedded.tomcat.TomcatEmbeddedServletCon
 import org.springframework.boot.context.embedded.tomcat.TomcatEmbeddedServletContainerFactory;
 import org.springframework.boot.context.embedded.undertow.UndertowEmbeddedServletContainer;
 import org.springframework.boot.context.embedded.undertow.UndertowEmbeddedServletContainerFactory;
+import org.springframework.boot.context.event.*;
 import org.springframework.boot.context.properties.ConfigurationBeanFactoryMetaData;
 import org.springframework.boot.context.properties.ConfigurationProperties;
 import org.springframework.boot.context.properties.EnableConfigurationProperties;
 import org.springframework.boot.liquibase.LiquibaseServiceLocatorApplicationListener;
 import org.springframework.boot.logging.ClasspathLoggingApplicationListener;
 import org.springframework.boot.logging.LoggingApplicationListener;
-import org.springframework.boot.context.event.*;
 import org.springframework.boot.web.servlet.*;
 import org.springframework.boot.web.support.ServletContextApplicationContextInitializer;
 import org.springframework.boot.web.support.SpringBootServletInitializer;
-import org.springframework.context.*;
 import org.springframework.cache.annotation.EnableCaching;
-import org.springframework.context.annotation.Condition;
-import org.springframework.context.annotation.Conditional;
-import org.springframework.context.annotation.Profile;
+import org.springframework.context.*;
 import org.springframework.context.annotation.*;
 import org.springframework.context.event.*;
 import org.springframework.context.support.AbstractApplicationContext;
@@ -103,15 +96,17 @@ import org.springframework.data.web.config.EnableSpringDataWebSupport;
 import org.springframework.http.converter.HttpMessageConverter;
 import org.springframework.scheduling.annotation.AsyncAnnotationBeanPostProcessor;
 import org.springframework.scheduling.annotation.EnableScheduling;
-import org.springframework.scheduling.annotation.SchedulingConfigurer;
 import org.springframework.validation.beanvalidation.BeanValidationPostProcessor;
 import org.springframework.web.SpringServletContainerInitializer;
 import org.springframework.web.WebApplicationInitializer;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.context.*;
+import org.springframework.web.context.support.AnnotationConfigWebApplicationContext;
 import org.springframework.web.context.support.GenericWebApplicationContext;
 import org.springframework.web.context.support.ServletContextAwareProcessor;
 import org.springframework.web.context.support.StandardServletEnvironment;
+import org.springframework.web.filter.DelegatingFilterProxy;
+import org.springframework.web.filter.HiddenHttpMethodFilter;
 import org.springframework.web.servlet.DispatcherServlet;
 import org.springframework.web.servlet.config.annotation.*;
 import org.springframework.web.servlet.support.AbstractAnnotationConfigDispatcherServletInitializer;
@@ -125,7 +120,7 @@ import javax.servlet.annotation.WebInitParam;
 import javax.servlet.annotation.WebListener;
 import javax.servlet.annotation.WebServlet;
 import javax.websocket.server.ServerEndpoint;
-import java.util.ServiceLoader;
+import java.util.*;
 
 /**
  * Spring Boot 应用启动类
@@ -1172,5 +1167,171 @@ public class Application {
         ConfigFileApplicationListener fff340gj309jg0934jg;
 
 
+}
+
+
+/**
+ * Using Spring Mvc WebApplicationInitializer, ApplicationContextInitializer and ContextLoaderListener ?
+ * */
+
+class SpringMvcExampleWebApplicationInitializer implements WebApplicationInitializer {
+
+    private static final String DISPATCHER_SERVLET_NAME = "dispatcher";
+
+    @Override
+    public void onStartup(ServletContext servletContext) throws ServletException {
+        registerDispatcherServlet(servletContext);
+        registerHiddenHttpMethodFilter(servletContext);
+    }
+
+    private void registerDispatcherServlet(final ServletContext servletContext) {
+        WebApplicationContext dispatcherContext = createContext(WebMvcContextConfiguration.class, InfrastructureContextConfiguration.class);
+        DispatcherServlet dispatcherServlet = new DispatcherServlet(dispatcherContext);
+        dispatcherServlet.setContextInitializers(new SpringMvcExampleProfilesInitializer());
+        ServletRegistration.Dynamic dispatcher = servletContext.addServlet(DISPATCHER_SERVLET_NAME, dispatcherServlet);
+        dispatcher.setLoadOnStartup(1);
+        dispatcher.addMapping("/");
+    }
+
+    private WebApplicationContext createContext(final Class<?>... annotatedClasses) {
+        AnnotationConfigWebApplicationContext context = new AnnotationConfigWebApplicationContext();
+        context.register(annotatedClasses);
+        return context;
+    }
+
+    private void registerHiddenHttpMethodFilter(ServletContext servletContext) {
+        FilterRegistration.Dynamic registration = servletContext.addFilter("hiddenHttpMethodFilter", HiddenHttpMethodFilter.class);
+        registration.addMappingForServletNames(EnumSet.of(DispatcherType.REQUEST, DispatcherType.FORWARD),
+                false, DISPATCHER_SERVLET_NAME);
+    }
+}
+
+class SpringMvcExampleProfilesInitializer implements ApplicationContextInitializer<ConfigurableApplicationContext> {
+
+    @Override
+    public void initialize(ConfigurableApplicationContext ctx) {
+        ConfigurableEnvironment environment = ctx.getEnvironment();
+        List<String> profiles = new ArrayList<String>(getProfiles());
+        if( profiles == null || profiles.isEmpty() )
+        {
+            throw new IllegalArgumentException("Profiles have not been configured");
+        }
+        environment.setActiveProfiles(profiles.toArray( new String[0]));
+    }
+
+    //TODO add logic
+    private Collection<String> getProfiles() {
+//        return Lists.newArrayList("file_based", "test_data");
+        return Arrays.asList("file_based", "test_data");
+    }
+}
+
+
+class WebMvcContextConfiguration{
+
+}
+
+@Configuration
+@ComponentScan(basePackages = {"com.savdev.springmvcexample.repository", "com.savdev.springmvcexample.config"})
+class InfrastructureContextConfiguration {
+
+}
+
+/*@Configuration
+@ComponentScan(basePackages = {"com.savdev.springmvcexample.repository", "com.savdev.springmvcexample.config"})
+@EnableTransactionManagement
+@EnableJpaRepositories(basePackages = {"com.savdev.springmvcexample.repository"})
+public class InfrastructureContextConfiguration2 {
+
+    @Configuration
+    @Profile(value = "file_based")
+    @PropertySource("classpath:/db/config/file_based.properties")
+    public static class FileBasedConfiguration {
+
+        @Inject
+        private Environment environment;
+
+        @Bean
+        public DataSource dataSource() {
+            BasicDataSource dataSource = new org.apache.commons.dbcp.BasicDataSource();
+            dataSource.setDriverClassName(environment.getProperty("jdbc.driver"));
+            dataSource.setUrl(environment.getProperty("jdbc.url"));
+            dataSource.setUsername(environment.getProperty("jdbc.username"));
+            dataSource.setPassword(environment.getProperty("jdbc.password"));
+            return dataSource;
+        }
+    }
+
+    @Bean
+    public SpringLiquibase liquibase(DataSource dataSource) {
+        SpringLiquibase liquibase = new SpringLiquibase();
+        liquibase.setDataSource(dataSource);
+        liquibase.setChangeLog("classpath:/db/liquibase/changelog/db.changelog-master.xml");
+        liquibase.setDropFirst(true);
+        return liquibase;
+    }
+}*/
+
+
+/**
+ *
+ * WebApplicationInitializer
+ * ApplicationContextInitializer
+ * ContextLoaderListener
+ *
+ * */
+
+
+class SpringMvcExampleWebApplicationInitializer2 implements WebApplicationInitializer {
+
+    private static final String DISPATCHER_SERVLET_NAME = "dispatcher";
+
+    private static final Class<?>[] configurationClasses = new Class<?>[]{
+            WebMvcContextConfiguration.class, InfrastructureContextConfiguration.class};
+
+
+    @Override
+    public void onStartup(ServletContext servletContext) throws ServletException {
+        registerListener(servletContext);
+        registerDispatcherServlet(servletContext);
+        registerHiddenHttpMethodFilter(servletContext);
+        registerSpringSecurityFilterChain(servletContext);
+    }
+
+    private void registerSpringSecurityFilterChain(ServletContext servletContext) {
+        FilterRegistration.Dynamic springSecurityFilterChain = servletContext.addFilter(
+//                BeanIds.SPRING_SECURITY_FILTER_CHAIN,
+                "frankie yang",
+                new DelegatingFilterProxy());
+        springSecurityFilterChain.addMappingForUrlPatterns(null, false, "/*");
+    }
+
+    private void registerDispatcherServlet(final ServletContext servletContext) {
+        WebApplicationContext dispatcherContext = createContext(WebMvcContextConfiguration.class, InfrastructureContextConfiguration.class);
+        DispatcherServlet dispatcherServlet = new DispatcherServlet(dispatcherContext);
+        dispatcherServlet.setContextInitializers(new SpringMvcExampleProfilesInitializer());
+        ServletRegistration.Dynamic dispatcher = servletContext.addServlet(DISPATCHER_SERVLET_NAME, dispatcherServlet);
+        dispatcher.setLoadOnStartup(1);
+        dispatcher.addMapping("/");
+    }
+
+    private WebApplicationContext createContext(final Class<?>... annotatedClasses) {
+        AnnotationConfigWebApplicationContext context = new AnnotationConfigWebApplicationContext();
+        context.register(annotatedClasses);
+//        context.refresh();
+        return context;
+    }
+
+    private void registerListener(ServletContext servletContext) {
+        WebApplicationContext rootContext = createContext(configurationClasses);
+        servletContext.addListener(new ContextLoaderListener(rootContext));
+//        servletContext.addListener(new RequestContextListener());
+    }
+
+    private void registerHiddenHttpMethodFilter(ServletContext servletContext) {
+        FilterRegistration.Dynamic registration = servletContext.addFilter("hiddenHttpMethodFilter", HiddenHttpMethodFilter.class);
+        registration.addMappingForServletNames(EnumSet.of(DispatcherType.REQUEST, DispatcherType.FORWARD),
+                false, DISPATCHER_SERVLET_NAME);
+    }
 }
 
