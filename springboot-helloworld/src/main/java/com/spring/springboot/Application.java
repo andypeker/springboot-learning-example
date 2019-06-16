@@ -1272,16 +1272,6 @@ public class InfrastructureContextConfiguration2 {
     }
 }*/
 
-
-/**
- *
- * WebApplicationInitializer
- * ApplicationContextInitializer
- * ContextLoaderListener
- *
- * */
-
-
 class SpringMvcExampleWebApplicationInitializer2 implements WebApplicationInitializer {
 
     private static final String DISPATCHER_SERVLET_NAME = "dispatcher";
