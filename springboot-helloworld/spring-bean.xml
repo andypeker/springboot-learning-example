@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns="http://www.springframework.org/schema/beans"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+    http://www.springframework.org/schema/beans/spring-beans-4.0.xsd">
+
+    <!-- 资源国际化 -->
+    <bean id="messageSource" class="org.springframework.context.support.ResourceBundleMessageSource">
+        <!-- 驱动spring调用messageSource Bean的setBasenames()的方法，改方法需要一个参数组 -->
+        <property name="basenames">
+            <list>
+                <value>message</value>
+                <!-- 如果有多个资源文件，全部列在这儿 -->
+            </list>
+        </property>
+    </bean>
+
+    <bean id="steelAxe" class="org.com.service.impl.SteelAxe"></bean>
+
+    <bean id="chinese" class="org.com.service.impl.Chinese">
+        <property name="axe">
+            <!-- 指定使用个容器中的id为steelAxe的Bean作为调用setAxe（）方法的参数 -->
+            <ref bean="steelAxe"/>
+        </property>
+    </bean>
+
+    <bean id="steelAxe" class="org.com.service.impl.SteelAxe"></bean>
+
+    <bean id="chinese" class="org.com.service.impl.Chinese">
+        <!-- 指定使用个容器中的id为steelAxe的Bean作为调用setAxe（）方法的参数 -->
+        <property name="axe" ref="steelAxe"/>
+    </bean>
+
+    <!-- 指定使用byName，根据setter的方法名与Bean的id进行匹配 -->
+    <bean id="chinese" class="org.com.service.impl.Chinese" autowire="byName">
+    </bean>
+
+    <bean id="gunDog" class="org.com.service.impl.GunDog">
+        <property name="name" value="wanggang">
+        </property>
+    </bean>
+
+    <bean id="chinese" class="org.com.service.impl.Chinese">
+        <!-- 为调用setSchools（）方法配置List集合作为参数值 和数组一样 -->
+        <property name="schools">
+            <list>
+                <!-- 每个value，ref，bean..都配置一个List元素 -->
+                <value>小学</value>
+                <value>中学</value>
+                <value>大学</value>
+            </list>
+        </property>
+
+        <property name="scores">
+            <!-- 为调用setScores()方法配置Map集合作为参数值 -->
+            <map>
+                <entry key="语文" value="80"/>
+                <entry key="数学" value="80"/>
+                <entry key="外语" value="80"/>
+            </map>
+        </property>
+    </bean>
+
+</beans>
