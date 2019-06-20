@@ -254,19 +254,6 @@ public class Application {
         //  7
         DispatcherServlet ds;
 
-        //  ############################ WebMVC
-        EnableWebMvc wefwefwef430143901490;
-        WebMvcConfigurer vfdvf122323;
-            WebMvcConfigurerAdapter erobeqribnoiqerbqerb;
-        WebMvcConfigurationSupport vv2390923confi;
-            DelegatingWebMvcConfiguration greogioeirg;
-                WebMvcAutoConfiguration.EnableWebMvcConfiguration rogioerigerg;
-        ServletComponentScan fwefwef2443634613;
-        WebServlet df;
-        WebListener egerg;
-        WebFilter fwef23;
-        WebInitParam eropowe;
-
         EndpointWebMvcManagementContextConfiguration erf2309230f923f;
 
         FreeMarkerTemplateAvailabilityProvider gergergerg93148951485915;
@@ -276,15 +263,6 @@ public class Application {
         ConfigurationProperties tohijioqehr;
         EnableConfigurationProperties eroignoinerng;
         EnableScheduling fwef01092;
-
-//  ############################################# 原理相似
-        EnableWebMvc ff32g34g;
-        WebMvcAutoConfiguration f304g9j309j4g0934g;
-        EnableSpringDataWebSupport foweio23;
-        SpringDataWebAutoConfiguration g30gj3409gj0394g;
-        WebMvcProperties www;
-        WebMvcConfigurer aa22323;
-        WebMvcRegistrations eger4334;
 
         HttpMessageConverter wewwe;
         ServletRegistrationBean wqqwq232323;
@@ -540,21 +518,6 @@ public class Application {
             MyApplicationContextInitializer1 init34f23f09j091;  //  Recognized
             MyApplicationContextInitializer2 init34f23f09j092;  //  Recognized
 
-        /*
-            ## springboot
-            # Application Context Initializers
-            org.springframework.context.ApplicationContextInitializer=\
-            org.springframework.boot.context.ConfigurationWarningsApplicationContextInitializer,\
-            org.springframework.boot.context.ContextIdApplicationContextInitializer,\
-            org.springframework.boot.context.config.DelegatingApplicationContextInitializer,\
-            org.springframework.boot.context.embedded.ServerPortInfoApplicationContextInitializer
-
-            ## springboot-autoconfigure
-            # Initializers
-            org.springframework.context.ApplicationContextInitializer=\
-            org.springframework.boot.autoconfigure.SharedMetadataReaderFactoryContextInitializer,\
-            org.springframework.boot.autoconfigure.logging.AutoConfigurationReportLoggingInitializer
-        */
 
     //  ############################ PostProcessor
 
@@ -645,140 +608,21 @@ public class Application {
             ConfigurableWebEnvironment rgrgrgrg;
                 StandardServletEnvironment erf9023jf0923;
 
-    //  ############################ Servlet Configure
+        //  ############################ Servlet Configure
 
         ContextLoader gregerg34gj093j409g;
         ServiceLoader oinepirg0394jg03j94;
         ClassLoader grg0934g0j3094g09;
-
-        //  ############################ AutoConfiguration 1 WebMvc
-
-        EnableWebMvc afef2232323;
-        WebMvcAutoConfiguration fwefweg34ginoi3n4g;
-        WebMvcConfigurer rbqebrqe43g;
-            WebMvcConfigurerAdapter ewgtwrth3223;
-                WebMvcAutoConfiguration.WebMvcAutoConfigurationAdapter g34g4hnoi42nho24ohi;
-                JolokiaMvcEndpoint gj9034jg0394jg09;
-                WebConfig g304gj093j4g;
-                WebConfig2 g9384g9834hg98h;
-//          WebMvcConfigurerComposite fff340gj3904gj9;
-
-        /**
-         * + @Configuration
-         * 1， extends WebMvcConfigurationSupport           ：会覆盖@EnableAutoConfiguration关于WebMvcAutoConfiguration的配置
-         * 2， extends DelegatingWebMvcConfiguration        ：会覆盖@EnableAutoConfiguration关于WebMvcAutoConfiguration的配置
-         * 3， implements WebMvcConfigurer                  ：不会覆盖@EnableAutoConfiguration关于WebMvcAutoConfiguration的配置
-         * 4， implements WebMvcConfigurer + @EnableWebMvc  ：会覆盖@EnableAutoConfiguration关于WebMvcAutoConfiguration的配置
-         * 5， @EnableWebMvc                                ：会补充@EnableAutoConfiguration关于WebMvcAutoConfiguration的配置
-         *
-         * 第 4 种情况适用于，想保留 Spring-Boot 默认 MVC 配置 并仅想 补充一些 其他配置，可以只 继承 WebMvcConfigurer；
-         * 同时，最好不使用使用 注解@Configuration，而应该使用 @Component。
-         *
-         * Important !
-         * To customize the configuration imported by @EnableWebMvc, we should extend
-         * the class WebMvcConfigurerAdapter and override the methods we want to do
-         * related customization with. Our extended WebMvcConfigurerAdapter methods are
-         * called back from WebMvcConfigurationSupport during configuration stage.
-         * 
-         * WebMvcConfigurer 原理：通过 WebMvcAutoConfiguration 中的 DelegatingWebMvcConfiguration 的子类 体现作用。
-         *
-         * 注解 EnableWebMvc 会 导入 DelegatingWebMvcConfiguration extends WebMvcConfigurationSupport；
-         * autocfg 会 导入 WebMvcAutoConfiguration，而 这个 配置 
-         *                   依赖 WebMvcConfigurer 并且 排斥 WebMvcConfigurationSupport；
-         * 所以 如果有 @EnableWebMvc（或者），则 WebMvcAutoConfiguration 不生效（情况5 原理）；
-         * 如果 需要修改配置，则 必须 实现 WebMvcConfigurer (extends WebMvcConfigurerAdapter) 并且 有 @EnableWebMvc。
-         * 如果 没有 WebMvcConfigurer，则 使用 WebMvcConfigurationSupport（参考注解条件，情况12 原理）；
-         * 如果 有 @EnableWebMvc，则 使用 WebMvcConfigurationSupport（参考注解条件，情况5 原理）；
-         * 另外，配置 WebMvcAutoConfiguration 内部有逻辑(就是 DelegatingWebMvcConfiguration)，可能会 导入 WebMvcConfigurer（情况4 原理）
-         * TODO 情况3 的原理，对情况3的理解需要说明，没有覆盖并不是完全不起作用，而是有所补充；补充部分，就是 WebMvcConfigurer 的实现。
-         * 
-         * @EnableWebMvc + extends WebMvcConfigurer，在扩展的类中重写父类的方法即可，
-         *      这种方式会屏蔽springboot的@EnableAutoConfiguration中的设置 （情况4）
-         * extends WebMvcConfigurationSupport，在扩展的类中重写父类的方法即可，
-         *      这种方式会屏蔽springboot的@EnableAutoConfiguration中的设置 （情况12）
-         * extends WebMvcConfigurer，在扩展的类中重写父类的方法即可，
-         *      这种方式依旧使用springboot的@EnableAutoConfiguration中的设置 （情况3）
-         *
-         * Spring Boot Referenc 原文（情况3）:
-         * If you want to keep Spring Boot MVC features and you want to add additional MVC configuration
-         * (interceptors, formatters, view controllers, and other features), you can add your own @Configuration 
-         * class of type WebMvcConfigurer but without @EnableWebMvc. If you wish to provide custom instances of
-         * RequestMappingHandlerMapping, RequestMappingHandlerAdapter, or ExceptionHandlerExceptionResolver, you
-         * can declare a WebMvcRegistrationsAdapter instance to provide such components.
-         * TODO WebMvcRegistrationsAdapter 是什么东西？
-         * */
-
-        WebMvcRegistrationsAdapter g340g9j340g9;
 
         /*
         * https://www.youtube.com/watch?v=uDl1qlJWE7A
         * https://www.youtube.com/watch?v=viP3VCx1X6w
         * */
 
-        ServletListenerRegistrationBean onionoi34343;
-        FilterRegistrationBean eroinoi23224;
-        ServletRegistrationBean oeqrinboi45981450801;
-        FilterRegistration ffdd34g34g34g;
-        ServletRegistration g340gj09j34g0;
-
-
         ImportBeanDefinitionRegistrar lknlknlk3434;
         ImportSelector g34g34;
         AutoConfigurationImportSelector greon3o4i;
 
-
-        //  ############################ AutoConfiguration 3
-
-
-        //  ############################ AutoConfiguration 4
-
-
-        //  ############################ AutoConfiguration 5
-
-
-        //  ############################ AutoConfiguration 6
-
-
-        /*
-        * spring.factories 文件有很多个，而且其中不止有 AutoConfigure 一种，
-        * 还有 其他十多种，是否 所有的这些，都是通过 EnableAutoConfiguration 拉入？
-        * 具体拉入逻辑需要研究研究，搞搞清楚。
-        *
-        *
-        * spring.factories 文件的类型：
-        *
-        * （默认情况下，springboot 启动时，SpringFactoriesLoader 拉入的类型的顺序如下，某几个多次出现）
-        * ApplicationContextInitializer
-        * ApplicationListener
-        * SpringApplicationRunListener
-        * EnvironmentPostProcessor
-        * PropertySourceLoader
-        * BeanInfoFactory
-        * FailureAnalyzer
-        * EnableAutoConfiguration
-        * AutoConfigurationImportFilter
-        * AutoConfigurationImportListener
-        * TemplateAvailabilityProvider
-        * ManagementContextConfiguration
-        *
-        * FailureAnalysisReporter
-        * SpringDataJacksonModules
-        * RepositoryFactorySupport
-        * TestExecutionListener
-        * ContextCustomizerFactory
-        *
-        * 应该是这样，spring-boot 启动，有一个繁复的过程；
-        * 在这个过程中，有很多个阶段，不同的阶段，会需要不同的"配置"。
-        *
-        * 比如 ApplicationContextInitializer 相关阶段，需要 从 spring.factories 获取 "类型"ApplicationContextInitializer 的配置；
-        * 而 ApplicationListener 相关阶段，需要 从 spring.factories 获取 "类型"ApplicationListener 的配置。
-        * 而 WebMvc 相关阶段，需要 从 spring.factories 获取 “类型”WebMvcAutoConfiguration 的配置（可以使用 @EnableWebMvc 修改定制）。
-        * 然后 xxxAutoConfiguration 相关阶段，需要 从 spring.factories 获取 "类型"xxxAutoConfiguration 的配置。
-        *
-        * 大概情况应该就是这样的逻辑。
-        *
-        * 最重要的东西 就是 类 SpringFactoriesLoader，接受 类型 作为 参数key，获取对应类型的 配置。
-        * */
 
         //  ############################ EnableXXX Anno
 
@@ -793,7 +637,6 @@ public class Application {
         EnableConfigurationProperties enCfgPrp;
 
         EnableSpringDataWebSupport gergh0934jg0394jg09;
-
 
 
         /**
@@ -852,82 +695,6 @@ public class Application {
 
         // TODO 以及 各种 其他 Customizer
 
-        /**
-         * TODO 还有一个重要问题没有搞清楚：SpringBoot启动过程中根上下文和子上下文的分解。
-         * SpringBoot 似乎并没有严格区分（属于MVC的）这两个阶段，有可能 在 SpringBoot 中只有一个方法，
-         * 而这个方法属于MVC，两个阶段都在这个方法内；以至于在 SpringBoot 看来，是同一个事情。
-         * Spring Boot 没有 ROOT-Dispatcher 父子结构，默认只有一个 上下文！
-         *
-         * No-web spring boot应用，context是AnnotationConfigApplicationContext
-         * web spring boot应用，context是AnnotationConfigEmbeddedWebApplicationContext
-         *
-         */
-
-        /***
-         * 2019-01-29
-         * Why use Application Hierachy ?
-         *
-         * --- from stackoverflow
-         * --- 1
-         * The classic use-case for this is when you have multiple Spring DispatcherServlet
-         * within a single webapp, with each of these servlets having their own app context,
-         * but which need to share beans between them. In this case, you add a 3rd context at
-         * the level of the webapp, which is the parent of each of the servlet appcontexts.
-         *
-         * You can take this pattern further, for example if you have multiple webapps bundled
-         * into a single JavaEE EAR. Here, the EAR can have its own context, which is the parent
-         * of the individual webapp contexts, which is the parent of the servlet contexts, and so on.
-         * You have this hierarchy of responsibility.
-         *
-         * In other situations, the context structure is dictated by some other factor. For example,
-         * Spring Security is independent of Spring MVC, and requires its configuration beans to go
-         * in the webapp context. If you want to use Spring MVC with it, then the config for that has
-         * to go into the servlet context, which has the root webapp context as its parent.
-         *
-         * --- 2
-         * In reading further, understood the following (skaffman has already indicated
-         * parts of this). Each Spring MVC webapp has one root application context and
-         * one servlet application context for each DispatcherServlet. The root application context is
-         * the parent of each servlet application context.
-         *
-         * Beans defined in "contextConfigLocation" (context-param in web.xml) are loaded into root
-         * application context.
-         * Beans in <servlet-name>-servlet.xml are loaded into servlet application context.
-         * If an EAR has multiple web apps, an EAR level application context can parent the root context
-         * of each webapp in EAR.
-         *
-         * */
-
-
-        /**
-         *
-         * Spring Boot Initialization Steps:
-         1, SpringApplication.run() creates EmbeddedWebApplicationContext application context;
-         2, Calls its refresh() method;
-         3, Refresh process reads annotations of the starting class TestSpring. It looks for import annotations.
-         EnableAutoConfiguration is one of them. For an import annotation the refresh process gets the corresponding
-         class from the annotation value and invokes its selectImports() method;
-         4, In case of @EnableAutoConfiguration the corresponding class is EnableAutoConfigurationImportSelector
-         whose selectImports() loads tons of other import selectors from the META-INF/spring.factories;
-         5, This process continues recursively. Also, all bean definitions, that are inside these import selectors,
-         are read. I.e. it includes beans defined by a method with the @Bean annotation, i.e. beans that require
-         the Spring context to call the corresponding method automatically to instantiate them;
-         6, The refresh() continues and reaches onRefresh(), the createEmbeddedServletContainer() method is called inside;
-         7, Among read bean defitions at the previous step, beans implementing ServletContextInitializer are
-         searched for and instantiated. One of them is the bean, defined by the
-         DispatcherServletAutoConfiguration.DispatcherServletRegistrationConfiguration#dispatcherServletRegistration()
-         method of ServletRegistrationBean type that extends ServletContextInitializer. As you can guess from the
-         name of the class, such initializers add a given servlet (in this case DispatcherServlet) to a given
-         ServletContext, when their onStartup() method is invoked;
-         8, A tomcat embedded server is created (not started completely yet). All found ServletContextInitializers
-         at the previous step are passed to this tomcat initialization - this is where the onStartup() methods of
-         those ServletContextInitializers are called and DispatcherServlet gets created and registered as servlet;
-         9, End of onRefresh() of application context;
-         10,The finishRefresh() is called where tomcat is finally started by TomcatEmbeddedServletContainer.start();
-         11,End of refresh() of application context and other final initialization steps;
-         12,The app is running.
-         * */
-
         ImportAutoConfiguration gj340gj3049jg0394jg9;
 
         Registration reg;
@@ -936,8 +703,11 @@ public class Application {
 
 
 
+        DispatcherServletAutoConfiguration grgrrgrg2u39r0293ff;
+
         /***
-         * Spring Boot Uses DispatcherServeletAutoConfig to initialize a default DispatcherServlet. So you need to customize the Default Dispatcher Servlet in the following way : 
+         * Spring Boot Uses DispatcherServletAutoConfiguration to initialize a default DispatcherServlet.
+         * So you need to customize the Default Dispatcher Servlet in the following way :
          */
         SpringApplicationBuilder grjigo3j40gj3094g;
 
