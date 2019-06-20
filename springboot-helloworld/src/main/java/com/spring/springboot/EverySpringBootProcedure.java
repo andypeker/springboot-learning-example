@@ -3,7 +3,7 @@ package com.spring.springboot;
 /**
  * @author Frankie Yang on 2019-06-20.
  */
-public class SpringBootProcedure {
+public class EverySpringBootProcedure {
 
 
 

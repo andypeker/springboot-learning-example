@@ -3,7 +3,7 @@ package com.spring.springboot;
 /**
  * @author Frankie Yang on 2019-06-20.
  */
-public class InsightContexts {
+public class EveryInsightContext {
 
     /**
      * TODO 还有一个重要问题没有搞清楚：SpringBoot启动过程中根上下文和子上下文的分解。

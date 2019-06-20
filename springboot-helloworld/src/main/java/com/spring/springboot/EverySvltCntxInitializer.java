@@ -168,13 +168,13 @@ public class EverySvltCntxInitializer {
      * servlet containers, rather than adding this configuration through a web.xml file.
      * */
     WebApplicationInitializer niog340;
-    SpringBootServletInitializer noi3480384g;
-    AbstractContextLoaderInitializer n03n4g083490n;
-    AbstractDispatcherServletInitializer n034ng03409g;
-    AbstractAnnotationConfigDispatcherServletInitializer aaa0394g0934g;
-    JerseyAutoConfiguration.JerseyWebApplicationInitializer gbgbg098hg34g34;
-    MyWebApplicationInitializer f3gi3ng3o4igno3in4ogi3o4gio;    //  No Recognized
-    MyWebApplicationInitializer2 f3gg3498j9g834984ogi3o4gio;    //  No Recognized
+        SpringBootServletInitializer noi3480384g;
+        AbstractContextLoaderInitializer n03n4g083490n;
+            AbstractDispatcherServletInitializer n034ng03409g;
+                AbstractAnnotationConfigDispatcherServletInitializer aaa0394g0934g;
+        JerseyAutoConfiguration.JerseyWebApplicationInitializer gbgbg098hg34g34;
+        MyWebApplicationInitializer f3gi3ng3o4igno3in4ogi3o4gio;    //  No Recognized
+        MyWebApplicationInitializer2 f3gg3498j9g834984ogi3o4gio;    //  No Recognized
 
 
 
