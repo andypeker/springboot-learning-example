@@ -365,17 +365,6 @@ public class Application {
         //  ############################ AutoConfiguration 2 EmbeddedServletContainerAutoConfiguration
 
         /**
-         * 这里有个问题：
-         * ServletContextInitializer 与 ContextLoaderListener 有什么关系？
-         *
-         * 一系列 ServletContextInitializer 的 处理起点 在 EnableAutoConfiguration，并且是其中一个类型：EmbeddedServletContainerAutoConfiguration。
-         *
-         * 而 ContextLoaderListener 的 起点似乎很早，早在 Servlet 容器 启动时，由 ServletContainerInitializer（SpringServletContainerInitializer）
-         * 开始，到 WebApplicationInitializer（SpringBootServletInitializer），然后就是 ContextLoaderListener。
-         *
-         * */
-
-        /**
          * 还可以对比 ServletContainerInitializer 和 WebApplicationInitializer ？
          * 根和茎茎的关系
          *
@@ -395,27 +384,9 @@ public class Application {
          * 应该拿 ServletContextInitializer 与 WebApplicationInitializer 对比，二者的成员方法的参数都是 ServletContext；
          * 类 SpringServletContainerInitializer 会 自动识别 到 WebApplicationInitializer，但 不会 自动识别 ServletContextInitializer。
          *
-         * 注解如下：
-         * Interface used to configure a Servlet 3.0+ context programmatically. Unlike WebApplicationInitializer,
-         * classes that implement this interface (and do not implement WebApplicationInitializer) will not be
-         * detected by SpringServletContainerInitializer and hence will not be automatically bootstrapped by
-         * the Servlet container.
-         *
-         * 可见，ServletContextInitializer 和 WebApplicationInitializer 功效是相同的，估计仅仅是用法不同；
+         * ServletContextInitializer 和 WebApplicationInitializer 功效是相同的，估计仅仅是用法不同；
          * 主要区别是，WebApplicationInitializer 给 Servlet Container 使用，而 ServletContextInitializer 给 Spring 使用。
          * */
-
-        /**
-         * WebApplicationInitializer is used by a Servlet Container at startup of the web application
-         * and provides a way for programmatic creating a web application(replacement for a web.xml file),
-         * （可以说在 MVC 之前）wrong !
-         * ApplicationContextInitializer provides a hook to configure the Spring application context
-         * before it gets fully created
-         * 【ApplicationContextInitializer 主要作用就是在 ConfigurableApplicationContext 类型(或者子类型)的
-         * ApplicationContext 做 refresh 之前，允许我们对 ConfiurableApplicationContext 的实例做进一步的设置和处理】
-         * （可以说在 AC 过程中）wrong !
-         * */
-
 
         EmbeddedServletContainerAutoConfiguration g43g34;
 
@@ -428,28 +399,11 @@ public class Application {
                     DelegatingFilterProxyRegistrationBean g0349gj3094g09;
 
         /**
-         * ServletContainerInitializer
-         *
-         * ServletContextInitializer
-         * WebApplicationInitializer
-         * ApplicationContextInitializer
-         *
          * //1
          * interface ServletContainerInitializer :
          * has one implement class SpringServletContainerInitializer.
          *
          * //2
-         * interface ServletContextInitializer :
-         *
-         * Interface used to configure a Servlet 3.0+ context programmatically. Unlike WebApplicationInitializer,
-         * classes that implement this interface (and do not implement WebApplicationInitializer) will not be
-         * detected by SpringServletContainerInitializer and hence will not be automatically bootstrapped by
-         * the Servlet container.
-         *
-         * This interface is primarily designed to allow ServletContextInitializers to be managed by Spring
-         * and not the Servlet container.
-         *
-         * //3
          * interface WebApplicationInitializer :
          *
          * Interface to be implemented in Servlet 3.0+ environments in order to configure the ServletContext
@@ -460,10 +414,22 @@ public class Application {
          * which itself is bootstrapped automatically by any Servlet 3.0 container. See its Javadoc for details
          * on this bootstrapping mechanism.
          *
+         * //3
+         * interface ServletContextInitializer :
+         *
+         * Interface used to configure a Servlet 3.0+ context programmatically. Unlike WebApplicationInitializer,
+         * classes that implement this interface (and do not implement WebApplicationInitializer) will not be
+         * detected by SpringServletContainerInitializer and hence will not be automatically bootstrapped by
+         * the Servlet container.
+         *
+         * TODO TODO TODO TODO TODO ???
+         * This interface is primarily designed to allow ServletContextInitializers to be managed by Spring
+         * and not the Servlet container.
+         *
          * //4
          * interface ApplicationContextInitializer<C extends ConfigurableApplicationContext>
          *
-         * Callback interface for initializing a Spring ConfigurableApplicationContext prior to being refreshed. [line 600~601]
+         * Callback interface for initializing a Spring ConfigurableApplicationContext prior to being refreshed. [line 482~485]
          *
          * Typically used within web applications that require some programmatic initialization of the application
          * context. For example, registering property sources or activating profiles against the context's environment.
@@ -476,29 +442,9 @@ public class Application {
          * */
 
         /**
-         * interface ServletContainerInitializer :
-         *
-         * The ServletContainerInitializer implementation is intented to be bundled in a JAR file which is in turn been
-         * dropped in /WEB-INF/lib of the webapp. The JAR file itself should have
-         * a /META-INF/services/javax.servlet.ServletContainerInitializer file containing the FQN of the
-         * ServletContainerInitializer implementation in the JAR. Please note that this file should thus not be
-         * placed in the webapp itself!
-         *
-         * This allows webapp module developers to let their JAR file hook on webapp's startup and shutdown cycle.
-         * It's true that they could also have used a ServletContextListener with @WebListener for this, but this
-         * won't work if the webapp's own web.xml file has a metadata-complete="true" attribute set in <web-app>
-         *     which means that the webapp shouldn't scan JARs for annotations (which saves startup time).
-         *
-         * That the ServletContainerInitializer doesn't work in your particular case can only mean that you're
-         * actually not developing a module JAR file, but just a part integral to your own web application. In
-         * that case, the ServletContainerInitializer is useless for you and you should be using ServletContextListener instead.
-         *
-         * */
-
-        /**
          * TODO 搞搞清楚
          * 有些 Listener 监控 Servlet 容器 的生命(Tomcat内部)；
-         * 有些 Listener 监控 [Web]ApplicationContext 的生命 --- ServletContextListener；
+         * 有些 Listener 监控 [Web]ApplicationContext 的生命 --- ServletContextListener；// TODO ？？？
          * 有些 Listener 监控 Application 的生命 --- ApplicationListener;
          *
          * 有些 Initializer 初始化 ServletContainer --- ServletContainerInitializer(SC + WebApplicationInitializer[])；
@@ -531,6 +477,18 @@ public class Application {
          *  ---> BullShit !
          * */
 
+
+        /**
+         * WebApplicationInitializer is used by a Servlet Container at startup of the web application
+         * and provides a way for programmatic creating a web application(replacement for a web.xml file),
+         * （可以说在 MVC 之前）wrong !
+         * ApplicationContextInitializer provides a hook to configure the Spring application context
+         * before it gets fully created
+         * 【ApplicationContextInitializer 主要作用就是在 ConfigurableApplicationContext 类型(或者子类型)的
+         * ApplicationContext 做 refresh 之前，允许我们对 ConfiurableApplicationContext 的实例做进一步的设置和处理】
+         * （可以说在 AC 过程中）wrong !
+         * */
+
         /**
          * Listener 注册的三/四种方式：
          * web.xml 里的 <listener/>
@@ -553,6 +511,8 @@ public class Application {
             ServletContextAttributeEvent g3goim3oin4go3in4goin6;
 
         /**
+         * TODO rubbish!
+         *
          * 接口 ServletContextListener 可以实现，做一些 定制性 的事情；
          * 类 ContextLoaderListener 已经实现了 接口 ServletContextListener，
          * 借助 "工具类" ContextLoader 完成了一些事情了，算是一个输出性的东西，不容置喙。
@@ -579,6 +539,7 @@ public class Application {
             AutoConfigurationReportLoggingInitializer g34oin304g09340g9;
             MyApplicationContextInitializer1 init34f23f09j091;  //  Recognized
             MyApplicationContextInitializer2 init34f23f09j092;  //  Recognized
+
         /*
             ## springboot
             # Application Context Initializers

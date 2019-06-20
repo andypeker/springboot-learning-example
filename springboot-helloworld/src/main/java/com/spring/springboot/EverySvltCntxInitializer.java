@@ -140,6 +140,28 @@ public class EverySvltCntxInitializer {
      * 而那些 Abstract***DispatcherServletInitializer，用来设置 子上下文（servlet-Application-Context），也可以设置 ROOT上下文。
      * */
 
+
+    /**
+     * interface ServletContainerInitializer :
+     *
+     * The ServletContainerInitializer implementation is intented to be bundled in a JAR file which is in turn been
+     * dropped in /WEB-INF/lib of the webapp. The JAR file itself should have
+     * a /META-INF/services/javax.servlet.ServletContainerInitializer file containing the FQN of the
+     * ServletContainerInitializer implementation in the JAR. Please note that this file should thus not be
+     * placed in the webapp itself!
+     *
+     * This allows webapp module developers to let their JAR file hook on webapp's startup and shutdown cycle.
+     * It's true that they could also have used a ServletContextListener with @WebListener for this, but this
+     * won't work if the webapp's own web.xml file has a metadata-complete="true" attribute set in <web-app>
+     *     which means that the webapp shouldn't scan JARs for annotations (which saves startup time).
+     *
+     * That the ServletContainerInitializer doesn't work in your particular case can only mean that you're
+     * actually not developing a module JAR file, but just a part integral to your own web application. In
+     * that case, the ServletContainerInitializer is useless for you and you should be using ServletContextListener instead.
+     *
+     * */
+
+
     /**
      * Spring WebApplicationInitializer provides a programatic way to configure the
      * Spring DispatcherServlet and ContextLoaderListener in Servlet 3.0+ compliant
