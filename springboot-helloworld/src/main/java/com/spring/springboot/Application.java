@@ -322,12 +322,7 @@ public class Application {
          *      META-INF/services/javax.servlet.ServletContainerInitializer in order to load the implementation
          * 5, Once loaded return to step 3 and, ContextConfig will call implementation's
          *      (here SpringServletContainerInitializer) onStartup method which will do rest of the things.
-         * */
-        WebappServiceLoader eovenoribnoierb;
-
-        //  ############################ Initializer -1
-        /**
-         * TODO 有个问题：
+         *
          * 接口 ServletContainerInitializer 的 实现类 设置在 某个文本文件（javax.servlet.ServletContainerInitializer）中，由 某个 Listener 获取并且实例化。
          * 这个 Listener 是什么？--- ContextConfig（上文已经提到）！
          *
@@ -335,17 +330,20 @@ public class Application {
          * org.apache.catalina.startup.ContextConfig is such a startup event listener for a
          * ServletContext that configures the properties of that ServletContext, and the associated defined servlets.
          * 翻译一下，ContextConfig 是一个 监听器，用于 配置 ServletContext 的 properties 并关联 servlet。
+         *
+         * 一句话， Tomcat 识别到 ServletContext 启动了；
+         * 由 ContextConfig，指示 WebappServiceLoader 去加载 各个 ServletContainerInitializer；
+         * 加载完成后，再由 ContextConfig 调用启动这些 ServletContainerInitializer 去配置 ServletContext。
          * */
 
+    //  ############################ Initializer 0a
         org.apache.catalina.startup.ContextConfig gg245gweqreg34gg;
         org.apache.catalina.startup.EngineConfig g34go0930g94;
         org.apache.catalina.startup.HostConfig g3g3049gj0340g9;
         org.apache.catalina.startup.UserConfig gg0394jg0934g09;
-        /**
-         * 下面的 ServletContainerInitializer 由 上述 xxxConfig 相关 Listener 触发（说的就是 ContextConfig）！
-         * */
-
-        //  ############################ Initializer 0
+    //  ############################ Initializer 0b
+        WebappServiceLoader eovenoribnoierb;
+    //  ############################ Initializer 0c
         ServletContainerInitializer rthr34oi;
             WsSci swioeowie;
             SpringServletContainerInitializer noin340h89034;
@@ -354,13 +352,12 @@ public class Application {
             CustomServletContainerInitializer2 ff4g0j340g9j3049g; //   No Recognized
 
         /**
-         * 类 ServletContainerInitializer 的 子类的 onStartup 方法是一个web应用中，我们的代码可以控制到的最早时间点。
-         * 其 子类 SpringServletContainerInitializer 专门处理各种 WebApplicationInitializer；（也就是说 WebApplicationInitializer 是代码可以控制的起点）
-         * 循环地 调起 各个 WebApplicationInitializer 的子类 的 方法 onStartup。
+         * 类 ServletContainerInitializer 的 子类的 onStartup 方法是web应用中，我们的代码可以控制到的最早时间点。
+         * 其 子类 SpringServletContainerInitializer 的 方法onStartup 专门处理各种 WebApplicationInitializer；（也就是说 WebApplicationInitializer 是代码可以控制的起点）
+         * 循环地 调起 各个 WebApplicationInitializer 的子类。
          *
-         * 简单地说，SpringServletContainerInitializer 负责将 ServletContext 实例化并委托
-         * 给用户定义的 WebApplicationInitializer 实现。
-         * 然后每个 WebApplicationInitializer 负责完成初始化 ServletContext 的实际工作。
+         * 简单地说，SpringServletContainerInitializer 负责将 ServletContext 实例化 并委托给 用户定义的 各个WebApplicationInitializer 实现。
+         * 每个 WebApplicationInitializer 负责参与初始化 ServletContext 的实际工作。
          * */
 
         /**
