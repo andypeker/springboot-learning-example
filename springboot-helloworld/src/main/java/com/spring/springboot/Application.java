@@ -22,6 +22,7 @@ import org.springframework.aop.framework.autoproxy.AbstractBeanFactoryAwareAdvis
 import org.springframework.beans.factory.config.*;
 import org.springframework.beans.factory.support.BeanDefinitionRegistryPostProcessor;
 import org.springframework.boot.*;
+import org.springframework.boot.actuate.autoconfigure.EndpointWebMvcManagementContextConfiguration;
 import org.springframework.boot.actuate.endpoint.mvc.JolokiaMvcEndpoint;
 import org.springframework.boot.autoconfigure.*;
 import org.springframework.boot.autoconfigure.admin.SpringApplicationAdminJmxAutoConfiguration;
@@ -176,21 +177,19 @@ public class Application {
         SpringFactoriesLoader wer2323r23r;
 
         //  1
-
-        SpringApplicationRunListener wewerl;
         ApplicationListener gergergerg;
-
-        ParentContextCloserApplicationListener ewf;
-        FileEncodingApplicationListener fwefwe;
-        AnsiOutputApplicationListener fwef;
-        ConfigFileApplicationListener fwefewf;
-        DelegatingApplicationListener ddddergerd;
-        LiquibaseServiceLocatorApplicationListener gwgwegweg;
-        ClasspathLoggingApplicationListener fwefwewefwef;
-        LoggingApplicationListener fwefweflwefl;
-        ParentContextCloserApplicationListener grgergergerg;
-        FileEncodingApplicationListener wgwegweg;
-        DelegatingApplicationListener wefwe23423424fwef;
+            ParentContextCloserApplicationListener ewf;
+            FileEncodingApplicationListener fwefwe;
+            AnsiOutputApplicationListener fwef;
+            ConfigFileApplicationListener fwefewf;
+            DelegatingApplicationListener ddddergerd;
+            LiquibaseServiceLocatorApplicationListener gwgwegweg;
+            ClasspathLoggingApplicationListener fwefwewefwef;
+            LoggingApplicationListener fwefweflwefl;
+            ParentContextCloserApplicationListener grgergergerg;
+            FileEncodingApplicationListener wgwegweg;
+            DelegatingApplicationListener wefwe23423424fwef;
+            BackgroundPreinitializer gwegwegweg;
 
         //  2
 
@@ -236,29 +235,13 @@ public class Application {
 
         //  5
 //        AutoConfigureWebMvc sfsdff;
-        MessageSourceAutoConfiguration ge23454325rgergerg;
-        WebMvcAutoConfiguration fewfwefwef;
-        GroovyTemplateAutoConfiguration ggwegweg;
-        FlywayAutoConfiguration gergergergerg;
-        MongoDataAutoConfiguration vczvzxvzxcv;
-        EmbeddedServletContainerAutoConfiguration fwefoiwef989we89f;
-        DispatcherServletAutoConfiguration fwefwef9090209f23f;
-        SpringApplicationAdminJmxAutoConfiguration grgergwg0909g23g;
-        CassandraAutoConfiguration ebqerbqerb2323;
-        MongoAutoConfiguration d4gn3oi43o4ngoi34g;
-        MongoRepositoriesAutoConfiguration qoerinqeorbnoqerbno23902903;
-        DataSourceAutoConfiguration erbeqb2223;
-        CacheAutoConfiguration gerger56u356u356u;
-        SecurityAutoConfiguration dff3rgj0934jg0934jg;
-        SecurityFilterAutoConfiguration fg04g3049gn0394jg09;
 
         //  5
-        ConfigurationWarningsApplicationContextInitializer wevwevwev;
-        ContextIdApplicationContextInitializer gwegweg;
-        DelegatingApplicationContextInitializer grgrgrg;
-        ServerPortInfoApplicationContextInitializer fwefepfpe;
         ApplicationContextInitializer gergerg34g34g34;
-        BackgroundPreinitializer gwegwegweg;
+            ConfigurationWarningsApplicationContextInitializer wevwevwev;
+            ContextIdApplicationContextInitializer gwegweg;
+            DelegatingApplicationContextInitializer grgrgrg;
+            ServerPortInfoApplicationContextInitializer fwefepfpe;
 
         //  6
         AutoConfigurationImportFilter gwefwef;
@@ -270,13 +253,6 @@ public class Application {
 
         //  7
         DispatcherServlet ds;
-
-        AbstractApplicationContext fwe090we0fw0ef;
-            GenericApplicationContext fwfwefwef;
-                GenericWebApplicationContext fwef092f023f;
-                    EmbeddedWebApplicationContext fwefwef234234234;
-                        AnnotationConfigEmbeddedWebApplicationContext wef0090wefwef;
-                            XmlEmbeddedWebApplicationContext ergergpeorpogperg0909erg;
 
         //  ############################ WebMVC
         EnableWebMvc wefwefwef430143901490;
@@ -291,11 +267,9 @@ public class Application {
         WebFilter fwef23;
         WebInitParam eropowe;
 
-//        EndpointWebMvcManagementContextConfiguration erf2309230f923f;
+        EndpointWebMvcManagementContextConfiguration erf2309230f923f;
 
         FreeMarkerTemplateAvailabilityProvider gergergerg93148951485915;
-        ConditionalOnClass ergerg0314901943014;
-        ConditionalOnBean gregergerg2039023;
 
         BeanPostProcessor gregeg013409014;
 
@@ -303,39 +277,27 @@ public class Application {
         EnableConfigurationProperties eroignoinerng;
         EnableScheduling fwef01092;
 
-        ApplicationContext ac;
-        RequestMapping reqMap;
-
-        //  原理相似
+//  ############################################# 原理相似
         EnableWebMvc ff32g34g;
         WebMvcAutoConfiguration f304g9j309j4g0934g;
         EnableSpringDataWebSupport foweio23;
         SpringDataWebAutoConfiguration g30gj3409gj0394g;
+        WebMvcProperties www;
+        WebMvcConfigurer aa22323;
+        WebMvcRegistrations eger4334;
 
         HttpMessageConverter wewwe;
         ServletRegistrationBean wqqwq232323;
 
-
-        AnnotationConfigApplicationContext ac121;
-        AnnotationConfigEmbeddedWebApplicationContext eac11231;
-
         EnvironmentAware wefwef;
         Environment wefwef23f23;
 
-        JdbcTemplateAutoConfiguration auorooro;
         ServerProperties rweoiwnoeb;
 
-        ApplicationListener al;
-        ApplicationContextInitializer acInit;
-        ParentContextCloserApplicationListener a23223;
         ServletContextListener scl;
         EmbeddedServletContainerInitializedEvent aa232323;
 
         ServerEndpoint se;
-        WebMvcProperties www;
-        WebMvcConfigurer aa22323;
-        WebMvcAutoConfiguration abwbe232323;
-        WebMvcRegistrations eger4334;
 
         ServletContext sc;
         org.apache.catalina.servlet4preview.ServletContext g34g304ijg09340g9;
@@ -346,15 +308,6 @@ public class Application {
         HelloAutoConfiguration aaaa23223;
 
         TransactionManagerCustomizers aaa232323;
-
-        //  ############################ WebMVC 相关 AutoConfiguration
-
-        DispatcherServletAutoConfiguration erbqerbqeb323;
-        HttpMessageConvertersAutoConfiguration g3g34g43;
-        ServerPropertiesAutoConfiguration gr34go3ini3o4g;
-        WebClientAutoConfiguration vrebe43g34g;
-        EmbeddedServletContainerAutoConfiguration lnoienrboerb34g;
-        WebMvcAutoConfiguration f3u409gj3094jg;
 
         //  ############################ ServiceLoader -2
         /**
@@ -420,7 +373,7 @@ public class Application {
          *
          * 5， 接口 ApplicationContextInitializer 相关执行（在 SpringApplication 的 方法run，或者 @EnableAutoConfiguration），
          *     其 方法onStartup 的 参数是 ? extends ConfigurableApplicationContext。
-         * 
+         *
          * 说明一下：
          *    通常情况下，SpringServletContainerInitializer 不会被 load & call，所以 各个 WebApplicationInitializer 也就不能被call，
          *    ContextLoaderListener 也不能被 SpringBootServletInitializer call；所以，有其他方式，比如 ServletContextInitializer etc。
@@ -441,9 +394,9 @@ public class Application {
          *
          * 各个 WebApplicationInitializer/ServletContextInitializer 是为了【通过 JavaConfig】 "丰富" ServletContext，
          * 而 ServletContextListener（ContextLoaderListener）的功效也是 "找机会"【通过xml】 "丰富" ServletContext。
-         * 
+         *
          * TODO 这里说的“丰富”，是否就是 Root ApplicationContext 的初始化呢？
-         * 
+         *
          * 再补充：上面的说法 关于 WebApplicationInitializer 和 ContextLoaderListener 完全错误！
          * WebApplicationInitializer 与 ContextLoaderListener 没有任何对等关系！
          * 其实 ContextLoaderListener 比较简单，监听容器的某个事件，然后触发执行 initWebApplicationContext，没有其他逻辑；
@@ -459,7 +412,7 @@ public class Application {
          * ContextLoaderListener 执行一些动作，效果是给 ServletContext 设置一个属性，比如 ROOT_APPLICATION_CONTEXT啥啥，
          * 而 WebApplicationInitializer 就是给 ServletContext 设置任何/全部属性，只是记下来并没有马上执行。
          * 上面之所以说，WebApplicationInitializer 不简单，就是因为 WebApplicationInitializer 并没有什么具体行为，因为它就是一个 Hook。
-         * 
+         *
          * 【上面对对错错的说法，全都错误】WebApplicationInitializer 和 ContextLoaderListener 毫无关系，不能相提并论！
          * 可以说 WebApplicationInitializer 能做各种配置，Root上下文、子上下文、Filter 和 Listener 以及其他，还可以搞 ContextLoaderListener；
          * 而 ContextLoaderListener 只搞 Root上下文（Root上下文 也是起点啊，似乎并不能说只能搞 Root上下文）。
