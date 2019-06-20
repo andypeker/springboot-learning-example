@@ -377,6 +377,15 @@ public class Application {
                     DelegatingFilterProxyRegistrationBean g0349gj3094g09;
 
         /**
+         *
+         * TODO Important Definition:
+         *
+         * "web application": There is one context (ServletContext) per "web application" per Java Virtual Machine.
+         *
+         * */
+
+
+        /**
          * //1
          * interface ServletContainerInitializer :
          * has one implement class SpringServletContainerInitializer.
