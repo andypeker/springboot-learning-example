@@ -287,59 +287,6 @@ public class Application {
 
         TransactionManagerCustomizers aaa232323;
 
-        /**
-         * 极其重要！
-         * 注册Servlet、Filter、Listener的方法，两/四种：
-         *
-         * 1， （war）注册到 WebApplicationInitializer 的实现类中：
-         *      servletContext.addListener()
-         *      servletContext.addFilter()
-         *      servletContext.addServlet()
-         * 2， （jar）注册到任意一个 @Configuration 配置类中：
-         *      ServletRegistrationBean
-         *      FilterRegistrationBean
-         *      ServletListenerRegistrationBean
-         * 3，  使用注解：
-         *      WebServlet
-         *      WebListener
-         *      WebFilter
-         * 4,   xml方式:<listener/>, <servlet/>, <filter/>
-         * */
-
-        /**
-         * （某个）WebApplicationInitializer 与 web.xml 重叠部分
-         *
-         <servlet>
-           <servlet-name>dispatcher</servlet-name>
-           <servlet-class>
-            org.springframework.web.servlet.DispatcherServlet
-                    </servlet-class>
-           <init-param>
-             <param-name>contextConfigLocation</param-name>
-             <param-value>/WEB-INF/spring/dispatcher-config.xml</param-value>
-           </init-param>
-           <load-on-startup>1</load-on-startup>
-         </servlet>
-
-         <servlet-mapping>
-           <servlet-name>dispatcher</servlet-name>
-           <url-pattern>/</url-pattern>
-         </servlet-mapping>
-
-         public class MyWebAppInitializer implements WebApplicationInitializer {
-            @Override
-            public void onStartup(ServletContext container) {
-                XmlWebApplicationContext appContext = new XmlWebApplicationContext();
-                appContext.setConfigLocation("/WEB-INF/spring/dispatcher-config.xml");
-
-                ServletRegistration.Dynamic dispatcher =
-                    container.addServlet("dispatcher", new DispatcherServlet(appContext));
-                dispatcher.setLoadOnStartup(1);
-                dispatcher.addMapping("/");
-            }
-         }
-         * */
-
         //  ############################ AutoConfiguration 2 EmbeddedServletContainerAutoConfiguration
 
         /**
@@ -356,77 +303,6 @@ public class Application {
          * 有没有关系？
          * */
 
-        /**
-         * ServletContextInitializer 与 WebApplicationInitializer 有什么关系？
-         *
-         * 应该拿 ServletContextInitializer 与 WebApplicationInitializer 对比，二者的成员方法的参数都是 ServletContext；
-         * 类 SpringServletContainerInitializer 会 自动识别 到 WebApplicationInitializer，但 不会 自动识别 ServletContextInitializer。
-         *
-         * ServletContextInitializer 和 WebApplicationInitializer 功效是相同的，估计仅仅是用法不同；
-         * 主要区别是，WebApplicationInitializer 给 Servlet Container 使用，而 ServletContextInitializer 给 Spring 使用。
-         * */
-
-        EmbeddedServletContainerAutoConfiguration g43g34;
-
-        ServletContextInitializer g30g90394g09;
-            RegistrationBean g3gergp;
-                ServletRegistrationBean g340j3094g;
-                ServletListenerRegistrationBean g34gj03j4g09;
-            //  AbstractFilterRegistrationBean rr34g03j4g09j394g;
-                    FilterRegistrationBean g34gj0394g034gk09;
-                    DelegatingFilterProxyRegistrationBean g0349gj3094g09;
-
-        /**
-         *
-         * TODO Important Definition:
-         *
-         * "web application": There is one context (ServletContext) per "web application" per Java Virtual Machine.
-         *
-         * */
-
-
-        /**
-         * //1
-         * interface ServletContainerInitializer :
-         * has one implement class SpringServletContainerInitializer.
-         *
-         * //2
-         * interface WebApplicationInitializer :
-         *
-         * Interface to be implemented in Servlet 3.0+ environments in order to configure the ServletContext
-         * programmatically -- as opposed to (or possibly in conjunction with) the traditional web.xml-based
-         * approach.
-         *
-         * Implementations of this SPI will be detected automatically by SpringServletContainerInitializer,
-         * which itself is bootstrapped automatically by any Servlet 3.0 container. See its Javadoc for details
-         * on this bootstrapping mechanism.
-         *
-         * //3
-         * interface ServletContextInitializer :
-         *
-         * Interface used to configure a Servlet 3.0+ context programmatically. Unlike WebApplicationInitializer,
-         * classes that implement this interface (and do not implement WebApplicationInitializer) will not be
-         * detected by SpringServletContainerInitializer and hence will not be automatically bootstrapped by
-         * the Servlet container.
-         *
-         * TODO TODO TODO TODO TODO ???
-         * This interface is primarily designed to allow ServletContextInitializers to be managed by Spring
-         * and not the Servlet container.
-         *
-         * //4
-         * interface ApplicationContextInitializer<C extends ConfigurableApplicationContext>
-         *
-         * Callback interface for initializing a Spring ConfigurableApplicationContext prior to being refreshed. [line 482~485]
-         *
-         * Typically used within web applications that require some programmatic initialization of the application
-         * context. For example, registering property sources or activating profiles against the context's environment.
-         * See ContextLoader and FrameworkServlet support for declaring a "contextInitializerClasses" context-param
-         * and init-param, respectively.
-         *
-         * ApplicationContextInitializer processors are encouraged to detect whether Spring's Ordered interface has
-         * been implemented or if the @Order annotation is present and to sort instances accordingly if so prior to
-         * invocation.
-         * */
 
         /**
          * TODO 搞搞清楚
@@ -464,25 +340,6 @@ public class Application {
          *  ---> BullShit !
          * */
 
-
-        /**
-         * WebApplicationInitializer is used by a Servlet Container at startup of the web application
-         * and provides a way for programmatic creating a web application(replacement for a web.xml file),
-         * （可以说在 MVC 之前）wrong !
-         * ApplicationContextInitializer provides a hook to configure the Spring application context
-         * before it gets fully created
-         * 【ApplicationContextInitializer 主要作用就是在 ConfigurableApplicationContext 类型(或者子类型)的
-         * ApplicationContext 做 refresh 之前，允许我们对 ConfiurableApplicationContext 的实例做进一步的设置和处理】
-         * （可以说在 AC 过程中）wrong !
-         * */
-
-        /**
-         * Listener 注册的三/四种方式：
-         * web.xml 里的 <listener/>
-         * 注解 @WebListener
-         * 方法 SC.addListener
-         * Bean方式 ServletListenerRegistrationBean
-         */
 
         //  ############################ Servlet Listener
         ServletContextListener oieoivoir34g34g;
@@ -579,25 +436,6 @@ public class Application {
             MyContextClosedListener gj039jg093409g;
             MyContextStartedListener gj03jg903049j;
             MyContextStoppedListener gj039g03940g934g;
-        /*
-            ## springboot
-            # Application Listeners
-            org.springframework.context.ApplicationListener=\
-            org.springframework.boot.ClearCachesApplicationListener,\
-            org.springframework.boot.builder.ParentContextCloserApplicationListener,\
-            org.springframework.boot.context.FileEncodingApplicationListener,\
-            org.springframework.boot.context.config.AnsiOutputApplicationListener,\
-            org.springframework.boot.context.config.ConfigFileApplicationListener,\
-            org.springframework.boot.context.config.DelegatingApplicationListener,\
-            org.springframework.boot.liquibase.LiquibaseServiceLocatorApplicationListener,\
-            org.springframework.boot.logging.ClasspathLoggingApplicationListener,\
-            org.springframework.boot.logging.LoggingApplicationListener
-
-            ## springboot-autoconfigure
-            # Application Listeners
-            org.springframework.context.ApplicationListener=\
-            org.springframework.boot.autoconfigure.BackgroundPreinitializer
-        */
 
         ApplicationEvent g3ig30g0934gk09k;
             SpringApplicationEvent g3g34g34g;
@@ -632,51 +470,6 @@ public class Application {
         ImportSelector g34g34;
         AutoConfigurationImportSelector greon3o4i;
 
-
-        //  ############################ EnableXXX Anno
-
-        EnableScheduling enSchd;
-        EnableAspectJAutoProxy enAspJ;
-        EnableAutoConfiguration enAuCfg;
-        EnableWebMvc enWmvc;
-        EnableCaching enCach;
-        EnableLoadTimeWeaving enLdtmwv;
-        EnableMBeanExport enMbn;
-        EnableOAuth2Sso enOA;
-        EnableConfigurationProperties enCfgPrp;
-
-        EnableSpringDataWebSupport gergh0934jg0394jg09;
-
-
-        /**
-         * Enable 就是 "识别"功能 的开关；打开开关，就开始识别，关上开关，就不再识别。
-         *
-         * 比如， 使用了 注解@EnableScheduling，就开始满世界找 @Scheduled；如果没有使用，就忽略 @Scheduled。
-         * 比如， 使用了 注解@EnableWebMvc，就开始满世界找 MVC 相关注解，比如各种 HandlerXXX，Controller，XXXAdapter之类。
-         * 
-         * 然后呢？@EnableAutoConfiguration 与 其他 @EnableXXX 有什么逻辑区别？
-         * 似乎是一样的逻辑，使用了 注解@EnableAutoConfiguration，就开始满世界找 Auto-Configuration 的相关东西 --- 就是那些 Conditional + Configuration。
-         * */
-
-        //  ############################ EnableXXX Anno Customize
-
-        /**
-         * 使用 AutoConfiguration 有两种做法
-         * 1， 把 @Configuration 的类，加入 *.factories，作为 key EnableAutoConfiguration 的 value；
-         *     这样的话，EnableAutoConfiguration 的 Importer 会 以 EnableAutoConfiguration 为类型 load 这个 类。
-         * 2， 创建一个 注解 @EnableXXX；其定义本身 具有 注解 Import，把 @Configuration 的类 作为参数。
-         *
-         *
-         * 接口 ImportSelector 声明了 一个方法 selectImports；
-         *
-         * 注解 Import 可以接受 三种类型的参数（可以被加载的类型）：
-         *  ImportSelector 实现类 （ @EnableAutoConfiguration）
-         *  Configuration 注解 （其他 @EnableXXX）
-         *  接口XXXX 实现类
-         *  ImportBeanDefinitionRegistrar 实现类 （其他。。。）
-         * TODO 这里忘了，再研究研究
-         * 
-         * */
 
         // TODO ApplicationListener 和 SpringApplicationRunListener 的处理顺序？
 

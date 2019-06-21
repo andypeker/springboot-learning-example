@@ -8,6 +8,8 @@ import com.spring.springboot.initializer1.MyWebApplicationInitializer2;
 import org.apache.catalina.startup.WebappServiceLoader;
 import org.apache.tomcat.websocket.server.WsSci;
 import org.springframework.boot.autoconfigure.jersey.JerseyAutoConfiguration;
+import org.springframework.boot.autoconfigure.web.EmbeddedServletContainerAutoConfiguration;
+import org.springframework.boot.web.servlet.*;
 import org.springframework.boot.web.support.SpringBootServletInitializer;
 import org.springframework.web.SpringServletContainerInitializer;
 import org.springframework.web.WebApplicationInitializer;
@@ -141,6 +143,61 @@ public class EverySvltCntxInitializer {
      * */
 
 
+
+    /**
+     *
+     * TODO Important Definition:
+     *
+     * "web application": There is one context (ServletContext) per "web application" per Java Virtual Machine.
+     *
+     * */
+
+
+    /**
+     * //1
+     * interface ServletContainerInitializer :
+     * has one implement class SpringServletContainerInitializer.
+     *
+     * //2
+     * interface WebApplicationInitializer :
+     *
+     * Interface to be implemented in Servlet 3.0+ environments in order to configure the ServletContext
+     * programmatically -- as opposed to (or possibly in conjunction with) the traditional web.xml-based
+     * approach.
+     *
+     * Implementations of this SPI will be detected automatically by SpringServletContainerInitializer,
+     * which itself is bootstrapped automatically by any Servlet 3.0 container. See its Javadoc for details
+     * on this bootstrapping mechanism.
+     *
+     * //3
+     * interface ServletContextInitializer :
+     *
+     * Interface used to configure a Servlet 3.0+ context programmatically. Unlike WebApplicationInitializer,
+     * classes that implement this interface (and do not implement WebApplicationInitializer) will not be
+     * detected by SpringServletContainerInitializer and hence will not be automatically bootstrapped by
+     * the Servlet container.
+     *
+     * TODO TODO TODO TODO TODO ???
+     * This interface is primarily designed to allow ServletContextInitializers to be managed by Spring
+     * and not the Servlet container.
+     *
+     * //4
+     * interface ApplicationContextInitializer<C extends ConfigurableApplicationContext>
+     *
+     * Callback interface for initializing a Spring ConfigurableApplicationContext prior to being refreshed. [line 482~485]
+     *
+     * Typically used within web applications that require some programmatic initialization of the application
+     * context. For example, registering property sources or activating profiles against the context's environment.
+     * See ContextLoader and FrameworkServlet support for declaring a "contextInitializerClasses" context-param
+     * and init-param, respectively.
+     *
+     * ApplicationContextInitializer processors are encouraged to detect whether Spring's Ordered interface has
+     * been implemented or if the @Order annotation is present and to sort instances accordingly if so prior to
+     * invocation.
+     * */
+
+
+
     /**
      * interface ServletContainerInitializer :
      *
@@ -160,6 +217,7 @@ public class EverySvltCntxInitializer {
      * that case, the ServletContainerInitializer is useless for you and you should be using ServletContextListener instead.
      *
      * */
+
 
 
     /**
@@ -182,4 +240,41 @@ public class EverySvltCntxInitializer {
      * WebApplicationInitializer 依赖 ServletContainerInitializer，到 SvltCntx！
      * ServletContextInitializer，到 SvltCntx！
      * */
+
+
+
+    /**
+     * ServletContextInitializer 与 WebApplicationInitializer 有什么关系？
+     *
+     * 应该拿 ServletContextInitializer 与 WebApplicationInitializer 对比，二者的成员方法的参数都是 ServletContext；
+     * 类 SpringServletContainerInitializer 会 自动识别 到 WebApplicationInitializer，但 不会 自动识别 ServletContextInitializer。
+     *
+     * ServletContextInitializer 和 WebApplicationInitializer 功效是相同的，估计仅仅是用法不同；
+     * 主要区别是，WebApplicationInitializer 给 Servlet Container 使用，而 ServletContextInitializer 给 Spring 使用。
+     * */
+
+    EmbeddedServletContainerAutoConfiguration g43g34;
+
+    ServletContextInitializer g30g90394g09;
+        RegistrationBean g3gergp;
+            ServletRegistrationBean g340j3094g;
+            ServletListenerRegistrationBean g34gj03j4g09;
+        //  AbstractFilterRegistrationBean rr34g03j4g09j394g;
+                FilterRegistrationBean g34gj0394g034gk09;
+                DelegatingFilterProxyRegistrationBean g0349gj3094g09;
+
+
+
+    /**
+     * WebApplicationInitializer is used by a Servlet Container at startup of the web application
+     * and provides a way for programmatic creating a web application(replacement for a web.xml file),
+     * （可以说在 MVC 之前）wrong !
+     * ApplicationContextInitializer provides a hook to configure the Spring application context
+     * before it gets fully created
+     * 【ApplicationContextInitializer 主要作用就是在 ConfigurableApplicationContext 类型(或者子类型)的
+     * ApplicationContext 做 refresh 之前，允许我们对 ConfiurableApplicationContext 的实例做进一步的设置和处理】
+     * （可以说在 AC 过程中）wrong !
+     * */
+
+
 }

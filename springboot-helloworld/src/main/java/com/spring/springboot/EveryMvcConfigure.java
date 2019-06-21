@@ -28,6 +28,71 @@ import javax.servlet.annotation.WebServlet;
 public class EveryMvcConfigure {
 
 
+    /**
+     * 极其重要！
+     * 注册Servlet、Filter、Listener的方法，两/四种：
+     *
+     * 1， （war）注册到 WebApplicationInitializer 的实现类中：
+     *      servletContext.addListener()
+     *      servletContext.addFilter()
+     *      servletContext.addServlet()
+     * 2， （jar）注册到任意一个 @Configuration 配置类中：
+     *      ServletRegistrationBean
+     *      FilterRegistrationBean
+     *      ServletListenerRegistrationBean
+     * 3，  使用注解：
+     *      WebServlet
+     *      WebListener
+     *      WebFilter
+     * 4,   xml方式:<listener/>, <servlet/>, <filter/>
+     * */
+
+    /**
+     * （某个）WebApplicationInitializer 与 web.xml 重叠部分
+     *
+     <servlet>
+     <servlet-name>dispatcher</servlet-name>
+     <servlet-class>
+     org.springframework.web.servlet.DispatcherServlet
+     </servlet-class>
+     <init-param>
+     <param-name>contextConfigLocation</param-name>
+     <param-value>/WEB-INF/spring/dispatcher-config.xml</param-value>
+     </init-param>
+     <load-on-startup>1</load-on-startup>
+     </servlet>
+
+     <servlet-mapping>
+     <servlet-name>dispatcher</servlet-name>
+     <url-pattern>/</url-pattern>
+     </servlet-mapping>
+
+     public class MyWebAppInitializer implements WebApplicationInitializer {
+    @Override
+    public void onStartup(ServletContext container) {
+    XmlWebApplicationContext appContext = new XmlWebApplicationContext();
+    appContext.setConfigLocation("/WEB-INF/spring/dispatcher-config.xml");
+
+    ServletRegistration.Dynamic dispatcher =
+    container.addServlet("dispatcher", new DispatcherServlet(appContext));
+    dispatcher.setLoadOnStartup(1);
+    dispatcher.addMapping("/");
+    }
+    }
+     * */
+
+
+
+    /**
+     * Listener 注册的三/四种方式：
+     * web.xml 里的 <listener/>
+     * 注解 @WebListener
+     * 方法 SC.addListener
+     * Bean方式 ServletListenerRegistrationBean
+     */
+
+
+
     //  ############################ AutoConfiguration 1 WebMvc
     EnableWebMvc afef2232323;
     WebMvcAutoConfiguration fwefweg34ginoi3n4g;
