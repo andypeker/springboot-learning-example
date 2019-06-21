@@ -190,12 +190,4 @@ public class EveryMvcConfigure {
 
 
 
-    //  ############################ Servlet Configure
-
-    ConfigurableEnvironment cfgenv;
-        AbstractEnvironment afefeee;
-        ConfigurableWebEnvironment rgrgrgrg;
-            StandardServletEnvironment erf9023jf0923;
-
-
 }

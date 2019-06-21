@@ -1,7 +1,6 @@
 package com.spring.springboot;
 
 import com.spring.springboot.appListener.*;
-import com.spring.springboot.autocfg.HelloAutoConfiguration;
 import com.spring.springboot.initializer2.MyApplicationContextInitializer1;
 import com.spring.springboot.initializer2.MyApplicationContextInitializer2;
 import com.spring.springboot.scListener.MyListener;
@@ -28,15 +27,11 @@ import org.springframework.boot.autoconfigure.websocket.JettyWebSocketContainerC
 import org.springframework.boot.autoconfigure.websocket.TomcatWebSocketContainerCustomizer;
 import org.springframework.boot.autoconfigure.websocket.UndertowWebSocketContainerCustomizer;
 import org.springframework.boot.autoconfigure.websocket.WebSocketContainerCustomizer;
-import org.springframework.boot.builder.ParentContextCloserApplicationListener;
 import org.springframework.boot.builder.SpringApplicationBuilder;
 import org.springframework.boot.context.ConfigurationWarningsApplicationContextInitializer;
 import org.springframework.boot.context.ContextIdApplicationContextInitializer;
-import org.springframework.boot.context.FileEncodingApplicationListener;
-import org.springframework.boot.context.config.AnsiOutputApplicationListener;
 import org.springframework.boot.context.config.ConfigFileApplicationListener;
 import org.springframework.boot.context.config.DelegatingApplicationContextInitializer;
-import org.springframework.boot.context.config.DelegatingApplicationListener;
 import org.springframework.boot.context.embedded.*;
 import org.springframework.boot.context.embedded.jetty.JettyEmbeddedServletContainer;
 import org.springframework.boot.context.embedded.jetty.JettyEmbeddedServletContainerFactory;
@@ -44,25 +39,16 @@ import org.springframework.boot.context.embedded.tomcat.TomcatEmbeddedServletCon
 import org.springframework.boot.context.embedded.tomcat.TomcatEmbeddedServletContainerFactory;
 import org.springframework.boot.context.embedded.undertow.UndertowEmbeddedServletContainer;
 import org.springframework.boot.context.embedded.undertow.UndertowEmbeddedServletContainerFactory;
-import org.springframework.boot.context.event.*;
 import org.springframework.boot.context.properties.ConfigurationBeanFactoryMetaData;
-import org.springframework.boot.context.properties.ConfigurationProperties;
-import org.springframework.boot.context.properties.EnableConfigurationProperties;
-import org.springframework.boot.liquibase.LiquibaseServiceLocatorApplicationListener;
-import org.springframework.boot.logging.ClasspathLoggingApplicationListener;
-import org.springframework.boot.logging.LoggingApplicationListener;
 import org.springframework.boot.web.servlet.*;
-import org.springframework.cache.annotation.EnableCaching;
 import org.springframework.context.*;
 import org.springframework.context.annotation.*;
-import org.springframework.context.event.*;
 import org.springframework.context.support.PropertySourcesPlaceholderConfigurer;
 import org.springframework.core.env.ConfigurableEnvironment;
 import org.springframework.core.env.Environment;
 import org.springframework.core.io.support.SpringFactoriesLoader;
 import org.springframework.http.converter.HttpMessageConverter;
 import org.springframework.scheduling.annotation.AsyncAnnotationBeanPostProcessor;
-import org.springframework.scheduling.annotation.EnableScheduling;
 import org.springframework.validation.beanvalidation.BeanValidationPostProcessor;
 import org.springframework.web.WebApplicationInitializer;
 import org.springframework.web.context.*;
@@ -71,7 +57,6 @@ import org.springframework.web.context.support.ServletContextAwareProcessor;
 import org.springframework.web.filter.DelegatingFilterProxy;
 import org.springframework.web.filter.HiddenHttpMethodFilter;
 import org.springframework.web.servlet.DispatcherServlet;
-import org.springframework.web.servlet.config.annotation.*;
 import org.springframework.web.util.IntrospectorCleanupListener;
 import org.springframework.web.util.WebAppRootListener;
 

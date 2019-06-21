@@ -9,6 +9,10 @@ import org.springframework.boot.context.config.DelegatingApplicationContextIniti
 import org.springframework.boot.context.embedded.ServerPortInfoApplicationContextInitializer;
 import org.springframework.boot.web.support.ServletContextApplicationContextInitializer;
 import org.springframework.context.ApplicationContextInitializer;
+import org.springframework.core.env.AbstractEnvironment;
+import org.springframework.core.env.ConfigurableEnvironment;
+import org.springframework.web.context.ConfigurableWebEnvironment;
+import org.springframework.web.context.support.StandardServletEnvironment;
 
 /**
  * @author Frankie Yang on 2019-06-20.
@@ -105,6 +109,15 @@ public class EverySpringBootProcedure {
         AutoConfigurationReportLoggingInitializer g34oin304g09340g9;
         MyApplicationContextInitializer1 init34f23f09j091;  //  Recognized
         MyApplicationContextInitializer2 init34f23f09j092;  //  Recognized
+
+
+
+    //  ############################  Configure Environment
+
+    ConfigurableEnvironment cfgenv;
+        AbstractEnvironment afefeee;
+        ConfigurableWebEnvironment rgrgrgrg;
+            StandardServletEnvironment erf9023jf0923;
 
 
 
