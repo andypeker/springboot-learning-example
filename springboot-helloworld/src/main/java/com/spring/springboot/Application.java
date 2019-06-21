@@ -1,55 +1,27 @@
 package com.spring.springboot;
 
-import ch.qos.logback.classic.servlet.LogbackServletContainerInitializer;
 import com.spring.springboot.appListener.*;
 import com.spring.springboot.autocfg.HelloAutoConfiguration;
-import com.spring.springboot.initializer.CustomServletContainerInitializer;
-import com.spring.springboot.initializer.CustomServletContainerInitializer2;
-import com.spring.springboot.initializer1.MyWebApplicationInitializer;
-import com.spring.springboot.initializer1.MyWebApplicationInitializer2;
 import com.spring.springboot.initializer2.MyApplicationContextInitializer1;
 import com.spring.springboot.initializer2.MyApplicationContextInitializer2;
-import com.spring.springboot.mvcConfigure.WebConfig;
-import com.spring.springboot.mvcConfigure.WebConfig2;
-import com.spring.springboot.saRunListener.MySprAppRunLsnr;
 import com.spring.springboot.scListener.MyListener;
 import com.spring.springboot.scListener.MyServletContextListener;
-import org.apache.catalina.startup.WebappServiceLoader;
 import org.apache.tomcat.websocket.server.WsContextListener;
-import org.apache.tomcat.websocket.server.WsSci;
 import org.springframework.aop.framework.AbstractAdvisingBeanPostProcessor;
 import org.springframework.aop.framework.autoproxy.AbstractBeanFactoryAwareAdvisingPostProcessor;
 import org.springframework.beans.factory.config.*;
 import org.springframework.beans.factory.support.BeanDefinitionRegistryPostProcessor;
 import org.springframework.boot.*;
 import org.springframework.boot.actuate.autoconfigure.EndpointWebMvcManagementContextConfiguration;
-import org.springframework.boot.actuate.endpoint.mvc.JolokiaMvcEndpoint;
 import org.springframework.boot.autoconfigure.*;
-import org.springframework.boot.autoconfigure.admin.SpringApplicationAdminJmxAutoConfiguration;
-import org.springframework.boot.autoconfigure.cache.CacheAutoConfiguration;
-import org.springframework.boot.autoconfigure.cassandra.CassandraAutoConfiguration;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnBean;
-import org.springframework.boot.autoconfigure.condition.ConditionalOnClass;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnWebApplication;
 import org.springframework.boot.autoconfigure.context.ConfigurationPropertiesAutoConfiguration;
-import org.springframework.boot.autoconfigure.context.MessageSourceAutoConfiguration;
 import org.springframework.boot.autoconfigure.data.jpa.EntityManagerFactoryDependsOnPostProcessor;
 import org.springframework.boot.autoconfigure.data.mongo.MongoClientDependsOnBeanFactoryPostProcessor;
-import org.springframework.boot.autoconfigure.data.mongo.MongoDataAutoConfiguration;
-import org.springframework.boot.autoconfigure.data.mongo.MongoRepositoriesAutoConfiguration;
-import org.springframework.boot.autoconfigure.data.web.SpringDataWebAutoConfiguration;
-import org.springframework.boot.autoconfigure.flyway.FlywayAutoConfiguration;
 import org.springframework.boot.autoconfigure.freemarker.FreeMarkerTemplateAvailabilityProvider;
-import org.springframework.boot.autoconfigure.groovy.template.GroovyTemplateAutoConfiguration;
 import org.springframework.boot.autoconfigure.jdbc.DataSourceAutoConfiguration;
-import org.springframework.boot.autoconfigure.jdbc.JdbcTemplateAutoConfiguration;
-import org.springframework.boot.autoconfigure.jersey.JerseyAutoConfiguration;
 import org.springframework.boot.autoconfigure.jmx.JmxAutoConfiguration;
-import org.springframework.boot.autoconfigure.logging.AutoConfigurationReportLoggingInitializer;
-import org.springframework.boot.autoconfigure.mongo.MongoAutoConfiguration;
-import org.springframework.boot.autoconfigure.security.SecurityAutoConfiguration;
-import org.springframework.boot.autoconfigure.security.SecurityFilterAutoConfiguration;
-import org.springframework.boot.autoconfigure.security.oauth2.client.EnableOAuth2Sso;
 import org.springframework.boot.autoconfigure.transaction.TransactionManagerCustomizers;
 import org.springframework.boot.autoconfigure.web.*;
 import org.springframework.boot.autoconfigure.websocket.JettyWebSocketContainerCustomizer;
@@ -80,46 +52,30 @@ import org.springframework.boot.liquibase.LiquibaseServiceLocatorApplicationList
 import org.springframework.boot.logging.ClasspathLoggingApplicationListener;
 import org.springframework.boot.logging.LoggingApplicationListener;
 import org.springframework.boot.web.servlet.*;
-import org.springframework.boot.web.support.ServletContextApplicationContextInitializer;
-import org.springframework.boot.web.support.SpringBootServletInitializer;
 import org.springframework.cache.annotation.EnableCaching;
 import org.springframework.context.*;
 import org.springframework.context.annotation.*;
 import org.springframework.context.event.*;
-import org.springframework.context.support.AbstractApplicationContext;
-import org.springframework.context.support.GenericApplicationContext;
 import org.springframework.context.support.PropertySourcesPlaceholderConfigurer;
-import org.springframework.core.env.AbstractEnvironment;
 import org.springframework.core.env.ConfigurableEnvironment;
 import org.springframework.core.env.Environment;
 import org.springframework.core.io.support.SpringFactoriesLoader;
-import org.springframework.data.web.config.EnableSpringDataWebSupport;
 import org.springframework.http.converter.HttpMessageConverter;
 import org.springframework.scheduling.annotation.AsyncAnnotationBeanPostProcessor;
 import org.springframework.scheduling.annotation.EnableScheduling;
 import org.springframework.validation.beanvalidation.BeanValidationPostProcessor;
-import org.springframework.web.SpringServletContainerInitializer;
 import org.springframework.web.WebApplicationInitializer;
-import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.context.*;
 import org.springframework.web.context.support.AnnotationConfigWebApplicationContext;
-import org.springframework.web.context.support.GenericWebApplicationContext;
 import org.springframework.web.context.support.ServletContextAwareProcessor;
-import org.springframework.web.context.support.StandardServletEnvironment;
 import org.springframework.web.filter.DelegatingFilterProxy;
 import org.springframework.web.filter.HiddenHttpMethodFilter;
 import org.springframework.web.servlet.DispatcherServlet;
 import org.springframework.web.servlet.config.annotation.*;
-import org.springframework.web.servlet.support.AbstractAnnotationConfigDispatcherServletInitializer;
-import org.springframework.web.servlet.support.AbstractDispatcherServletInitializer;
 import org.springframework.web.util.IntrospectorCleanupListener;
 import org.springframework.web.util.WebAppRootListener;
 
 import javax.servlet.*;
-import javax.servlet.annotation.WebFilter;
-import javax.servlet.annotation.WebInitParam;
-import javax.servlet.annotation.WebListener;
-import javax.servlet.annotation.WebServlet;
 import javax.websocket.server.ServerEndpoint;
 import java.util.*;
 
@@ -370,21 +326,6 @@ public class Application {
          * 而 ServletContextListener 响应事件：读取 Root上下文 的配置文件，开始搞 Root上下文。
          */
 
-        /**
-         * SpringBoot 启动中，会查找 ApplicationContextInitializer 的子类，
-         * 调起 其中的 各个 方法initialize。
-         * */
-        ApplicationContextInitializer verver34gj03g093j940;
-            ServletContextApplicationContextInitializer g3oi3oi4gnoi;
-            DelegatingApplicationContextInitializer g3o4g039g409;
-            ServerPortInfoApplicationContextInitializer g34og34g09340g9;
-            ContextIdApplicationContextInitializer g34ing034g093j4gj9;
-            ConfigurationWarningsApplicationContextInitializer g34n0934g09j0;
-            AutoConfigurationReportLoggingInitializer g34oin304g09340g9;
-            MyApplicationContextInitializer1 init34f23f09j091;  //  Recognized
-            MyApplicationContextInitializer2 init34f23f09j092;  //  Recognized
-
-
     //  ############################ PostProcessor
 
         BeanPostProcessor wepnip23p0g092;
@@ -410,50 +351,6 @@ public class Application {
             AbstractDependsOnBeanFactoryPostProcessor oi34ngo3n4oig3io4;
                 EntityManagerFactoryDependsOnPostProcessor jg093j409g34;
                 MongoClientDependsOnBeanFactoryPostProcessor g3gj09j039g4;
-
-
-        //  ############################ Listener
-
-        /**
-         * 类 SpringApplicationRunListener 通过 自动配置被调起，
-         * 其 子类 EventPublishingRunListener 专门处理 各种 ApplicationListener；
-         * 循环地 调起 各个 ApplicationListener 的子类。
-         * */
-
-        SpringApplicationRunListener aprlsnr;
-            EventPublishingRunListener g303049jg09;
-            MySprAppRunLsnr g340g309g039k4g09;  //  Recognized
-
-
-        //  All Recognized
-        ApplicationListener allal;
-            MyEnvReadyListener gj09j0934g;
-            MyApplicationPreparedListener g30034g;
-            MyApplicationStartingListener gj093jg90j3904g;
-            MyApplicationFailListener gj039j4g093049g;
-            MyApplicationReadyListener gj03j4g093j40g9;
-            MyContextRefreshedListener g309j039g40934;
-            MyContextClosedListener gj039jg093409g;
-            MyContextStartedListener gj03jg903049j;
-            MyContextStoppedListener gj039g03940g934g;
-
-        ApplicationEvent g3ig30g0934gk09k;
-            SpringApplicationEvent g3g34g34g;
-                ApplicationEnvironmentPreparedEvent f3409309g4;
-                ApplicationFailedEvent verver340gm09;
-                ApplicationReadyEvent g34090934gj0j;
-                ApplicationStartingEvent g3409093kg0934;
-            ApplicationContextEvent g3m09m34g09;
-                ContextRefreshedEvent g30m093jg0934;
-                ContextStartedEvent go3ig093094gk;
-                ContextStoppedEvent go3i4g093049g0k;
-
-        //  ############################ Servlet Configure
-
-        ConfigurableEnvironment cfgenv;
-            AbstractEnvironment afefeee;
-            ConfigurableWebEnvironment rgrgrgrg;
-                StandardServletEnvironment erf9023jf0923;
 
         //  ############################ Servlet Configure
 

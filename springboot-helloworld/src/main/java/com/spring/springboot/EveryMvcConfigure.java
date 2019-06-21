@@ -12,7 +12,11 @@ import org.springframework.boot.web.servlet.FilterRegistrationBean;
 import org.springframework.boot.web.servlet.ServletComponentScan;
 import org.springframework.boot.web.servlet.ServletListenerRegistrationBean;
 import org.springframework.boot.web.servlet.ServletRegistrationBean;
+import org.springframework.core.env.AbstractEnvironment;
+import org.springframework.core.env.ConfigurableEnvironment;
 import org.springframework.data.web.config.EnableSpringDataWebSupport;
+import org.springframework.web.context.ConfigurableWebEnvironment;
+import org.springframework.web.context.support.StandardServletEnvironment;
 import org.springframework.web.servlet.config.annotation.*;
 
 import javax.servlet.FilterRegistration;
@@ -183,6 +187,15 @@ public class EveryMvcConfigure {
     ServletRegistrationBean oeqrinboi45981450801;
     FilterRegistration ffdd34g34g34g;
     ServletRegistration g340gj09j34g0;
+
+
+
+    //  ############################ Servlet Configure
+
+    ConfigurableEnvironment cfgenv;
+        AbstractEnvironment afefeee;
+        ConfigurableWebEnvironment rgrgrgrg;
+            StandardServletEnvironment erf9023jf0923;
 
 
 }

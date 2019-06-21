@@ -1,5 +1,15 @@
 package com.spring.springboot;
 
+import com.spring.springboot.initializer2.MyApplicationContextInitializer1;
+import com.spring.springboot.initializer2.MyApplicationContextInitializer2;
+import org.springframework.boot.autoconfigure.logging.AutoConfigurationReportLoggingInitializer;
+import org.springframework.boot.context.ConfigurationWarningsApplicationContextInitializer;
+import org.springframework.boot.context.ContextIdApplicationContextInitializer;
+import org.springframework.boot.context.config.DelegatingApplicationContextInitializer;
+import org.springframework.boot.context.embedded.ServerPortInfoApplicationContextInitializer;
+import org.springframework.boot.web.support.ServletContextApplicationContextInitializer;
+import org.springframework.context.ApplicationContextInitializer;
+
 /**
  * @author Frankie Yang on 2019-06-20.
  */
@@ -79,5 +89,24 @@ public class EverySpringBootProcedure {
      11,End of refresh() of application context and other final initialization steps;
      12,The app is running.
      * */
+
+
+
+    /**
+     * SpringBoot 启动中，会查找 ApplicationContextInitializer 的子类，
+     * 调起 其中的 各个 方法initialize。
+     * */
+    ApplicationContextInitializer verver34gj03g093j940;
+        ServletContextApplicationContextInitializer g3oi3oi4gnoi;
+        DelegatingApplicationContextInitializer g3o4g039g409;
+        ServerPortInfoApplicationContextInitializer g34og34g09340g9;
+        ContextIdApplicationContextInitializer g34ing034g093j4gj9;
+        ConfigurationWarningsApplicationContextInitializer g34n0934g09j0;
+        AutoConfigurationReportLoggingInitializer g34oin304g09340g9;
+        MyApplicationContextInitializer1 init34f23f09j091;  //  Recognized
+        MyApplicationContextInitializer2 init34f23f09j092;  //  Recognized
+
+
+
 
 }
