@@ -10,7 +10,7 @@ public class EverySpringBootProcedure {
     //  ############################ AutoConfiguration 3
 
     /*
-     * spring.factories 文件有很多个，而且其中不止有 AutoConfigure 一种，
+     * spring.factories 文件有很多个，而且其中不止有 Auto-Configure 一种，
      * 还有 其他十多种，是否 所有的这些，都是通过 EnableAutoConfiguration 拉入？
      * 具体拉入逻辑需要研究研究，搞搞清楚。
      *

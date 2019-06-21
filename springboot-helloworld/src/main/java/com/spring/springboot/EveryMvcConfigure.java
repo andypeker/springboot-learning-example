@@ -62,12 +62,16 @@ public class EveryMvcConfigure {
     WebMvcRegistrations eger4334;
 
     /**
+     * WebMvcAutoConfiguration 的配置         :           WebMvcConfigurationSupport + DelegatingWebMvcConfiguration
+     *
      * + @Configuration
-     * 1， extends WebMvcConfigurationSupport           ：会覆盖@EnableAutoConfiguration关于WebMvcAutoConfiguration的配置
-     * 2， extends DelegatingWebMvcConfiguration        ：会覆盖@EnableAutoConfiguration关于WebMvcAutoConfiguration的配置
-     * 3， implements WebMvcConfigurer                  ：不会覆盖@EnableAutoConfiguration关于WebMvcAutoConfiguration的配置
-     * 4， implements WebMvcConfigurer + @EnableWebMvc  ：会覆盖@EnableAutoConfiguration关于WebMvcAutoConfiguration的配置
-     * 5， @EnableWebMvc                                ：会补充@EnableAutoConfiguration关于WebMvcAutoConfiguration的配置
+     * 1， @EnableWebMvc                     ：           会使用 @EnableAutoConfiguration 关于 WebMvcAutoConfiguration 的配置
+     * 3， implements WebMvcConfigurer/WebMvcConfigurerAdapter
+     *                                      ：           不会覆盖 @EnableAutoConfiguration 关于 WebMvcAutoConfiguration 的配置
+     * 4， implements WebMvcConfigurer/WebMvcConfigurerAdapter + @EnableWebMvc
+     *                                      ：           会覆盖 @EnableAutoConfiguration 关于 WebMvcAutoConfiguration 的配置
+     * 5， extends WebMvcConfigurationSupport/DelegatingWebMvcConfiguration
+     *                                      ：           会覆盖 @EnableAutoConfiguration 关于 WebMvcAutoConfiguration 的配置
      *
      * 第 4 种情况适用于，想保留 Spring-Boot 默认 MVC 配置 并仅想 补充一些 其他配置，可以只 继承 WebMvcConfigurer；
      * 同时，最好不使用使用 注解@Configuration，而应该使用 @Component。
@@ -91,11 +95,11 @@ public class EveryMvcConfigure {
      * TODO 情况3 的原理，对情况3的理解需要说明，没有覆盖并不是完全不起作用，而是有所补充；补充部分，就是 WebMvcConfigurer 的实现。
      *
      * @EnableWebMvc + extends WebMvcConfigurer，在扩展的类中重写父类的方法即可，
-     *      这种方式会屏蔽springboot的@EnableAutoConfiguration中的设置 （情况4）
-     * extends WebMvcConfigurationSupport，在扩展的类中重写父类的方法即可，
-     *      这种方式会屏蔽springboot的@EnableAutoConfiguration中的设置 （情况12）
+     *      这种方式会屏蔽springboot的@EnableAutoConfiguration中的设置
      * extends WebMvcConfigurer，在扩展的类中重写父类的方法即可，
-     *      这种方式依旧使用springboot的@EnableAutoConfiguration中的设置 （情况3）
+     *      这种方式依旧使用springboot的@EnableAutoConfiguration中的设置
+     * extends WebMvcConfigurationSupport，在扩展的类中重写父类的方法即可，
+     *      这种方式会屏蔽springboot的@EnableAutoConfiguration中的设置
      *
      * Spring Boot Referenc 原文（情况3）:
      * If you want to keep Spring Boot MVC features and you want to add additional MVC configuration
