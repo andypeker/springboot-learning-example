@@ -1,7 +1,9 @@
 package com.spring.springboot;
 
+import com.spring.springboot.autocfg.HelloAutoConfiguration;
 import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
 import org.springframework.boot.autoconfigure.security.oauth2.client.EnableOAuth2Sso;
+import org.springframework.boot.context.properties.ConfigurationProperties;
 import org.springframework.boot.context.properties.EnableConfigurationProperties;
 import org.springframework.cache.annotation.EnableCaching;
 import org.springframework.context.annotation.EnableAspectJAutoProxy;
@@ -61,6 +63,15 @@ public class EveryEnableXXX {
      * TODO 这里忘了，再研究研究
      *
      * */
+
+
+    //  start 自动配置注解 -- 自动配置类 -- properties自动配置 -- properties配置 -- 一气呵成
+    EnableAutoConfiguration aaa2323232112;
+    HelloAutoConfiguration aaaa23223;
+
+    ConfigurationProperties tohijioqehr;
+    EnableConfigurationProperties eroignoinerng;
+    //  end
 
 
 }

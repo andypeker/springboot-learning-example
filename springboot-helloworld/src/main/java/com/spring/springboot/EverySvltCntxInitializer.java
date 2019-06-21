@@ -277,4 +277,22 @@ public class EverySvltCntxInitializer {
      * */
 
 
+
+    //  ############################ AutoConfiguration 2 EmbeddedServletContainerAutoConfiguration
+
+    /**
+     * 还可以对比 ServletContainerInitializer 和 WebApplicationInitializer ？
+     * 根和茎茎的关系
+     *
+     * 还可以对比 ServletContainerInitializer 和 ServletContextInitializer ？
+     * 根和茎茎的关系
+     *
+     * 还可以对比 ServletContextInitializer 和 WebApplicationInitializer ？
+     * 功效相同，用法不同
+     *
+     * 还可以对比 ApplicationContextInitializer 和 ServletContextInitializer ？
+     * 有没有关系？
+     * */
+
+
 }

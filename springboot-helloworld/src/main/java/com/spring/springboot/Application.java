@@ -123,13 +123,6 @@ public class Application {
     public void fwefwef() {
         ApplicationRunner apprnnr;
 
-        EnableScheduling we3r;
-        EnableCaching werwer;
-        EnableAutoConfiguration feef242342343ef;
-        EnableMBeanExport egwegwegweg;
-        EnableScheduling gewrgwegweg;
-        EnableWebMvc fwefwefwef133123123123;
-
         SpringFactoriesLoader wer2323r23r;
 
         Profile wefwef;
@@ -179,10 +172,6 @@ public class Application {
 
         BeanPostProcessor gregeg013409014;
 
-        ConfigurationProperties tohijioqehr;
-        EnableConfigurationProperties eroignoinerng;
-        EnableScheduling fwef01092;
-
         HttpMessageConverter wewwe;
         ServletRegistrationBean wqqwq232323;
 
@@ -201,26 +190,7 @@ public class Application {
 
         ImportBeanDefinitionRegistrar g34g98j9834g98h98h9;
 
-        EnableAutoConfiguration aaa2323232112;
-        HelloAutoConfiguration aaaa23223;
-
         TransactionManagerCustomizers aaa232323;
-
-        //  ############################ AutoConfiguration 2 EmbeddedServletContainerAutoConfiguration
-
-        /**
-         * 还可以对比 ServletContainerInitializer 和 WebApplicationInitializer ？
-         * 根和茎茎的关系
-         *
-         * 还可以对比 ServletContainerInitializer 和 ServletContextInitializer ？
-         * 根和茎茎的关系
-         *
-         * 还可以对比 ServletContextInitializer 和 WebApplicationInitializer ？
-         * 功效相同，用法不同
-         *
-         * 还可以对比 ApplicationContextInitializer 和 ServletContextInitializer ？
-         * 有没有关系？
-         * */
 
 
         /**
