@@ -132,43 +132,6 @@ public class Application {
 
         SpringFactoriesLoader wer2323r23r;
 
-        //  1
-        ApplicationListener gergergerg;
-            ParentContextCloserApplicationListener ewf;
-            FileEncodingApplicationListener fwefwe;
-            AnsiOutputApplicationListener fwef;
-            ConfigFileApplicationListener fwefewf;
-            DelegatingApplicationListener ddddergerd;
-            LiquibaseServiceLocatorApplicationListener gwgwegweg;
-            ClasspathLoggingApplicationListener fwefwewefwef;
-            LoggingApplicationListener fwefweflwefl;
-            ParentContextCloserApplicationListener grgergergerg;
-            FileEncodingApplicationListener wgwegweg;
-            DelegatingApplicationListener wefwe23423424fwef;
-            BackgroundPreinitializer gwegwegweg;
-
-        //  2
-
-//        SpringApplicationRunListeners springAppRunLsnrs;
-        SpringApplicationRunListener springAppRunLsnr;
-            EventPublishingRunListener ergergerg;
-                ApplicationEvent we135rwer;
-                SpringApplicationEvent erger34234;
-                ApplicationEnvironmentPreparedEvent ewrwer;
-                ApplicationPreparedEvent fwefw221ef;
-                ApplicationReadyEvent feefw2ef;
-                ApplicationFailedEvent efwefeeeeew;
-                ApplicationStartingEvent wefwefwef222333;
-                ApplicationStartedEvent fewiioweirf;
-                ApplicationContextEvent erfer324;
-                ContextClosedEvent fwefwef234234;
-                ContextRefreshedEvent owefionwef;
-                ContextStoppedEvent voiwne;
-                ContextStartedEvent ovwieobwefe;
-                ApplicationEventMulticaster gergerg;
-                AbstractApplicationEventMulticaster ewwefwef;
-                SimpleApplicationEventMulticaster sdgweg;
-
         Profile wefwef;
         ConditionalOnBean gwgweg;
         ConfigurationPropertiesAutoConfiguration gfergerg;

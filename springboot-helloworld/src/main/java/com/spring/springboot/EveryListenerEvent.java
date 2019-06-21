@@ -3,21 +3,24 @@ package com.spring.springboot;
 import com.spring.springboot.appListener.*;
 import com.spring.springboot.saRunListener.MySprAppRunLsnr;
 import org.springframework.boot.SpringApplicationRunListener;
+import org.springframework.boot.autoconfigure.BackgroundPreinitializer;
+import org.springframework.boot.builder.ParentContextCloserApplicationListener;
+import org.springframework.boot.context.FileEncodingApplicationListener;
+import org.springframework.boot.context.config.AnsiOutputApplicationListener;
+import org.springframework.boot.context.config.ConfigFileApplicationListener;
+import org.springframework.boot.context.config.DelegatingApplicationListener;
 import org.springframework.boot.context.event.*;
+import org.springframework.boot.liquibase.LiquibaseServiceLocatorApplicationListener;
+import org.springframework.boot.logging.ClasspathLoggingApplicationListener;
+import org.springframework.boot.logging.LoggingApplicationListener;
 import org.springframework.context.ApplicationEvent;
 import org.springframework.context.ApplicationListener;
-import org.springframework.context.event.ApplicationContextEvent;
-import org.springframework.context.event.ContextRefreshedEvent;
-import org.springframework.context.event.ContextStartedEvent;
-import org.springframework.context.event.ContextStoppedEvent;
+import org.springframework.context.event.*;
 
 /**
  * @author Frankie Yang on 2019-06-21.
  */
 public class EveryListenerEvent {
-
-
-
 
     //  ############################ Listener
 
@@ -27,8 +30,11 @@ public class EveryListenerEvent {
      * 循环地 调起 各个 ApplicationListener 的子类。
      * */
 
-    SpringApplicationRunListener aprlsnr;
-        EventPublishingRunListener g303049jg09;
+
+    //  2
+//    SpringApplicationRunListeners springAppRunLsnrs;
+    SpringApplicationRunListener springAppRunLsnr;
+        EventPublishingRunListener ergergerg;
         MySprAppRunLsnr g340g309g039k4g09;  //  Recognized
 
 
@@ -43,6 +49,16 @@ public class EveryListenerEvent {
         MyContextClosedListener gj039jg093409g;
         MyContextStartedListener gj03jg903049j;
         MyContextStoppedListener gj039g03940g934g;
+        ParentContextCloserApplicationListener ewf;
+        FileEncodingApplicationListener fwefwe;
+        AnsiOutputApplicationListener fwef;
+        ConfigFileApplicationListener fwefewf;
+        DelegatingApplicationListener ddddergerd;
+        LiquibaseServiceLocatorApplicationListener gwgwegweg;
+        ClasspathLoggingApplicationListener fwefwewefwef;
+        LoggingApplicationListener fwefweflwefl;
+        BackgroundPreinitializer gwegwegweg;
+
 
     ApplicationEvent g3ig30g0934gk09k;
         SpringApplicationEvent g3g34g34g;
@@ -54,6 +70,11 @@ public class EveryListenerEvent {
             ContextRefreshedEvent g30m093jg0934;
             ContextStartedEvent go3ig093094gk;
             ContextStoppedEvent go3i4g093049g0k;
+
+
+    ApplicationEventMulticaster gergerg;
+        AbstractApplicationEventMulticaster ewwefwef;
+            SimpleApplicationEventMulticaster sdgweg;
 
 
 
