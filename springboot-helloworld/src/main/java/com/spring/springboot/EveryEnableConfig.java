@@ -16,7 +16,7 @@ import org.springframework.web.servlet.config.annotation.EnableWebMvc;
 /**
  * @author Frankie Yang on 2019-06-21.
  */
-public class EveryEnableXXX {
+public class EveryEnableConfig {
 
 
     //  ############################ EnableXXX Anno
@@ -30,7 +30,6 @@ public class EveryEnableXXX {
     EnableMBeanExport enMbn;
     EnableOAuth2Sso enOA;
     EnableConfigurationProperties enCfgPrp;
-
     EnableSpringDataWebSupport gergh0934jg0394jg09;
 
 
@@ -43,6 +42,7 @@ public class EveryEnableXXX {
      * 然后呢？@EnableAutoConfiguration 与 其他 @EnableXXX 有什么逻辑区别？
      * 似乎是一样的逻辑，使用了 注解@EnableAutoConfiguration，就开始满世界找 Auto-Configuration 的相关东西 --- 就是那些 Conditional + Configuration。
      * */
+
 
     //  ############################ EnableXXX Anno Customize
 
