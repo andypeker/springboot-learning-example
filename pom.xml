@@ -8,6 +8,10 @@
 	<version>1.0-SNAPSHOT</version>
 	<packaging>pom</packaging>
 
+	<!--<configuration>
+		<source>1.8</source>
+		<target>1.8</target>
+	</configuration>-->
 
 	<properties>
         <source>1.8</source>
