@@ -61,8 +61,9 @@
 		<!-- Spring Data ES 篇 -->
 		<module>spring-data-elasticsearch-crud</module>
 		<module>spring-data-elasticsearch-query</module>
+        <module>springboot-simple-sample</module>
 
-	</modules>
+    </modules>
 
 	<!--<dependencies>
 		<dependency>
