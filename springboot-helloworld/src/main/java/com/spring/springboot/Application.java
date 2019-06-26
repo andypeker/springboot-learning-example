@@ -288,36 +288,11 @@ public class Application {
 
         // TODO ApplicationListener 和 SpringApplicationRunListener 的处理顺序？
 
-        EmbeddedServletContainerCustomizer wef029j3f02j30f9;
-            ServerProperties g34g03j0934g;
-            WebSocketContainerCustomizer gj0349gj034jg0934;
-                TomcatWebSocketContainerCustomizer gg3409gj093;
-                UndertowWebSocketContainerCustomizer gj0394jg0394jg;
-                JettyWebSocketContainerCustomizer fg0943jg0394g;
-
-
-        EmbeddedServletContainerFactory wewewe23232;
-            ConfigurableEmbeddedServletContainer conownow;
-                AbstractConfigurableEmbeddedServletContainer fwf23f23;
-                    AbstractEmbeddedServletContainerFactory wewe2322323;
-                        TomcatEmbeddedServletContainerFactory tomcatfs;
-                        UndertowEmbeddedServletContainerFactory undertowfs;
-                        JettyEmbeddedServletContainerFactory jettyfs;
-
-        EmbeddedServletContainer cont;
-            UndertowEmbeddedServletContainer wewe23f23f;
-            TomcatEmbeddedServletContainer weiuifu23;
-            JettyEmbeddedServletContainer gooi43gnoi2323;
-
-
-        // TODO 以及 各种 其他 Customizer
-
         ImportAutoConfiguration gj340gj3049jg0394jg9;
 
         Registration reg;
         RegistrationBean regBn;
         //  TODO 什么区别？
-
 
 
         DispatcherServletAutoConfiguration grgrrgrg2u39r0293ff;
