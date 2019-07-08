@@ -52,12 +52,20 @@ public class EveryListenerEvent {
         ParentContextCloserApplicationListener ewf;
         FileEncodingApplicationListener fwefwe;
         AnsiOutputApplicationListener fwef;
-        ConfigFileApplicationListener fwefewf;
         DelegatingApplicationListener ddddergerd;
         LiquibaseServiceLocatorApplicationListener gwgwegweg;
         ClasspathLoggingApplicationListener fwefwewefwef;
         LoggingApplicationListener fwefweflwefl;
         BackgroundPreinitializer gwegwegweg;
+        //  读配置文件 application.properties 和 application.yaml
+        ConfigFileApplicationListener fwefewf;
+
+
+    /*
+    * ApplicationContextInitializer
+    * 和 ApplicationListener
+    * 的批量加载处理？
+    * */
 
 
     ApplicationEvent g3ig30g0934gk09k;
