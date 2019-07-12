@@ -300,4 +300,9 @@ public class EverySvltCntxInitializer {
      * */
 
 
+    /*
+        WebApplicationInitializer 与 ContextLoaderListener 的关系：
+        WebApplicationInitializer 通过 某种途径 搞 ContextLoaderListener !
+    */
+
 }
