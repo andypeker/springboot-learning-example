@@ -1,5 +1,7 @@
 package yang.svlt;
 
+import org.springframework.context.annotation.Configuration;
+
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -13,7 +15,7 @@ import java.io.PrintWriter;
  */
 
 //  http://localhost:8186/LongRunningServlet?time=8000
-
+@Configuration
 @WebServlet("/LongRunningServlet")
 public class LongRunningServlet extends HttpServlet {
     private static final long serialVersionUID = 1L;

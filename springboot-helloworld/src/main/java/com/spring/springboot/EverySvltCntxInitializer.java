@@ -182,7 +182,6 @@ public class EverySvltCntxInitializer {
      * detected by SpringServletContainerInitializer and hence will not be automatically bootstrapped by
      * the Servlet container.
      *
-     * TODO TODO TODO TODO TODO ???
      * This interface is primarily designed to allow ServletContextInitializers to be managed by Spring
      * and not the Servlet container.
      *
@@ -200,7 +199,6 @@ public class EverySvltCntxInitializer {
      * been implemented or if the @Order annotation is present and to sort instances accordingly if so prior to
      * invocation.
      * */
-
 
 
     /**

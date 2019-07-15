@@ -1,5 +1,6 @@
 package yang.svlt;
 
+import org.springframework.context.annotation.Configuration;
 import yang.lsnr.AppAsyncListener;
 import yang.processor.AsyncRequestProcessor;
 
@@ -15,7 +16,7 @@ import java.util.concurrent.ThreadPoolExecutor;
 /**
  * @author Frankie Yang on 2019-06-21.
  */
-
+@Configuration
 @WebServlet(urlPatterns = "/AsyncLongRunningServlet", asyncSupported = true)
 public class AsyncLongRunningServlet extends HttpServlet {
     private static final long serialVersionUID = 1L;

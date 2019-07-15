@@ -3,6 +3,7 @@ package com.spring.springboot;
 import com.spring.springboot.initializer2.MyApplicationContextInitializer1;
 import com.spring.springboot.initializer2.MyApplicationContextInitializer2;
 import org.springframework.boot.autoconfigure.logging.AutoConfigurationReportLoggingInitializer;
+import org.springframework.boot.autoconfigure.web.DispatcherServletAutoConfiguration;
 import org.springframework.boot.context.ConfigurationWarningsApplicationContextInitializer;
 import org.springframework.boot.context.ContextIdApplicationContextInitializer;
 import org.springframework.boot.context.config.DelegatingApplicationContextInitializer;
@@ -92,8 +93,10 @@ public class EverySpringBootProcedure {
      10,The finishRefresh() is called where tomcat is finally started by TomcatEmbeddedServletContainer.start();
      11,End of refresh() of application context and other final initialization steps;
      12,The app is running.
-     * */
 
+     * import annotations 是很重要的概念，是哪些呢？
+     * 使用了 @Import(<? extends ImportSelector>.class) 的注解
+     * */
 
 
     /**
