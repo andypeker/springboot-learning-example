@@ -43,10 +43,10 @@ public class CityController {
         return "myCity List";
     }
 
-    @RequestMapping(value = "/")
+    @RequestMapping(value = "/default")
     @ResponseBody
     public String defaultPage(){
-        System.out.println("\n\ndefaultPage defaultPage defaultPage\n\n");
+        System.out.println("\ndefaultPage defaultPage defaultPage\n");
         return "(springboot-freemarker CityController) Default Page";
     }
 

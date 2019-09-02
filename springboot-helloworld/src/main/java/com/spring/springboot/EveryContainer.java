@@ -12,6 +12,7 @@ import org.springframework.boot.context.embedded.tomcat.TomcatEmbeddedServletCon
 import org.springframework.boot.context.embedded.tomcat.TomcatEmbeddedServletContainerFactory;
 import org.springframework.boot.context.embedded.undertow.UndertowEmbeddedServletContainer;
 import org.springframework.boot.context.embedded.undertow.UndertowEmbeddedServletContainerFactory;
+import org.springframework.stereotype.Component;
 
 /**
  * @author Frankie Yang on 2019-06-26.
@@ -39,10 +40,21 @@ public class EveryContainer {
                     JettyEmbeddedServletContainerFactory jettyfs;
 
     EmbeddedServletContainer cont;
-        UndertowEmbeddedServletContainer wewe23f23f;
         TomcatEmbeddedServletContainer weiuifu23;
+        UndertowEmbeddedServletContainer wewe23f23f;
         JettyEmbeddedServletContainer gooi43gnoi2323;
 
 
 
+}
+
+@Component
+class AppContainerCustomizer implements EmbeddedServletContainerCustomizer {
+
+    @Override
+    public void customize(ConfigurableEmbeddedServletContainer container) {
+        container.setPort(38080);
+        container.setContextPath("/xxpath");
+
+    }
 }
