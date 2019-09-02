@@ -32,6 +32,7 @@ class AppContainerCustomizer implements EmbeddedServletContainerCustomizer {
     public void customize(ConfigurableEmbeddedServletContainer container) {
         container.setPort(38085);
         container.setContextPath("/xxpath");
-
+        container.setDisplayName("Frankie Developing SpringBoot FreeMarker set DisplayName");
+        container.setServerHeader("Server started by Frankie Yang");
     }
 }
