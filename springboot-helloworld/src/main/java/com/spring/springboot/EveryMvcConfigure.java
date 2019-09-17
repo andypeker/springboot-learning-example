@@ -96,7 +96,6 @@ public class EveryMvcConfigure {
      */
 
 
-
     //  ############################ AutoConfiguration 1 WebMvc
 
     EnableWebMvc afef2232323;

@@ -63,11 +63,12 @@ public class EverySvltCntxInitializer {
     WebappServiceLoader eovenoribnoierb;
     //  ############################ Initializer 0c
     ServletContainerInitializer rthr34oi;
-    WsSci swioeowie;
-    SpringServletContainerInitializer noin340h89034;
-    LogbackServletContainerInitializer aaa34g09340g9j09;
-    CustomServletContainerInitializer g3ig039g093k4g0k; //   No Recognized
-    CustomServletContainerInitializer2 ff4g0j340g9j3049g; //   No Recognized
+        WsSci swioeowie;
+        SpringServletContainerInitializer noin340h89034;
+        LogbackServletContainerInitializer aaa34g09340g9j09;
+        CustomServletContainerInitializer g3ig039g093k4g0k; //   No Recognized
+        CustomServletContainerInitializer2 ff4g0j340g9j3049g; //   No Recognized
+
 
     /**
      * 类 ServletContainerInitializer 的 子类的 onStartup 方法是web应用中，我们的代码可以控制到的最早时间点。
