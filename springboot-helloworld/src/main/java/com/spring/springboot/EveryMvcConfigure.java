@@ -98,6 +98,7 @@ public class EveryMvcConfigure {
 
 
     //  ############################ AutoConfiguration 1 WebMvc
+
     EnableWebMvc afef2232323;
     WebMvcAutoConfiguration fwefweg34ginoi3n4g;
     WebMvcConfigurer rbqebrqe43g;
@@ -106,20 +107,24 @@ public class EveryMvcConfigure {
             JolokiaMvcEndpoint gj9034jg0394jg09;
             WebConfig g304gj093j4g;
             WebConfig2 g9384g9834hg98h;
+    WebMvcConfigurationSupport vv2390923confi;
+        DelegatingWebMvcConfiguration greogioeirg;
 //      WebMvcConfigurerComposite fff340gj3904gj9;
 
-    //  ############################ WebMVC
-    EnableWebMvc wefwefwef430143901490;
-        WebMvcConfigurer vfdvf122323;
-    WebMvcConfigurerAdapter erobeqribnoiqerbqerb;
-        WebMvcConfigurationSupport vv2390923confi;
-            DelegatingWebMvcConfiguration greogioeirg;
+    /***
+     * 一个应用应该只有一个
+     * 继承自 DelegatingWebMVCConfiguration 的配置
+     * 或 一个 @EnableWebMvc class，
+     * 因为它们会注册相同的底层beans。
+     */
+
     WebMvcAutoConfiguration.EnableWebMvcConfiguration rogioerigerg;
     ServletComponentScan fwefwef2443634613;
     WebServlet df;
     WebListener egerg;
     WebFilter fwef23;
     WebInitParam eropowe;
+
 
     //  ############################################# 原理相似
     EnableWebMvc ff32g34g;
