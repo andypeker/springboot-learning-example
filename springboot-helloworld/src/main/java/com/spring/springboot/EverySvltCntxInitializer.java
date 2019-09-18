@@ -16,10 +16,12 @@ import org.springframework.web.SpringServletContainerInitializer;
 import org.springframework.web.WebApplicationInitializer;
 import org.springframework.web.context.AbstractContextLoaderInitializer;
 import org.springframework.web.context.ContextLoader;
+import org.springframework.web.servlet.DispatcherServlet;
 import org.springframework.web.servlet.support.AbstractAnnotationConfigDispatcherServletInitializer;
 import org.springframework.web.servlet.support.AbstractDispatcherServletInitializer;
 
 import javax.servlet.ServletContainerInitializer;
+import javax.servlet.ServletRegistration;
 
 /**
  * @author Frankie Yang on 2019-06-20.
@@ -246,6 +248,19 @@ public class EverySvltCntxInitializer {
      * */
 
 
+    /**
+     ***DispatcherServlet VS ContextLoaderListener
+
+     在 Spring MVC 中存在两种应用上下文：DispatcherServlet 创建的和拦截器 ContextLoaderListener 创建的上下文：
+        1、DispatcherServlet：加载包含 web 组件的 bean，比如 controllers，view resolvers 和 hanlder mappings。
+        2、ContextLoaderListener：加载其他 bean，通常是一些中间层和数据层的组件（比如数据库配置 bean 等）。
+
+     回到 AbstractAnnotationConfigDispatcherServletInitializer ，在 AbstractAnnotationConfigDispatcherServletInitializer
+     中 DispatcherServlet 和 ContextLoaderListener 都会被创建，而基类中的方法就可用来创建不同的应用上下文：
+        getServletConfigClasses()：定义 DispatcherServlet 应用上下文中的 beans
+        getRootConfigClasses()：定义拦截器 ContextLoaderListener 应用上下文中的 beans
+     */
+
 
     /**
      * ServletContextInitializer 与 WebApplicationInitializer 有什么关系？
@@ -303,5 +318,9 @@ public class EverySvltCntxInitializer {
         WebApplicationInitializer 与 ContextLoaderListener 的关系：
         WebApplicationInitializer 通过 某种途径 搞 ContextLoaderListener !
     */
+
+
+
+    ServletRegistration fffff;
 
 }
