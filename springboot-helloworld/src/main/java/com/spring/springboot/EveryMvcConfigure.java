@@ -55,20 +55,20 @@ public class EveryMvcConfigure {
      * （某个）WebApplicationInitializer 与 web.xml 重叠部分
      *
      <servlet>
-     <servlet-name>dispatcher</servlet-name>
-     <servlet-class>
-     org.springframework.web.servlet.DispatcherServlet
-     </servlet-class>
-     <init-param>
-     <param-name>contextConfigLocation</param-name>
-     <param-value>/WEB-INF/spring/dispatcher-config.xml</param-value>
-     </init-param>
-     <load-on-startup>1</load-on-startup>
+         <servlet-name>dispatcher</servlet-name>
+         <servlet-class>
+            org.springframework.web.servlet.DispatcherServlet
+         </servlet-class>
+         <init-param>
+             <param-name>contextConfigLocation</param-name>
+             <param-value>/WEB-INF/spring/dispatcher-config.xml</param-value>
+         </init-param>
+         <load-on-startup>1</load-on-startup>
      </servlet>
 
      <servlet-mapping>
-     <servlet-name>dispatcher</servlet-name>
-     <url-pattern>/</url-pattern>
+         <servlet-name>dispatcher</servlet-name>
+         <url-pattern>/</url-pattern>
      </servlet-mapping>
 
      public class MyWebAppInitializer implements WebApplicationInitializer {
@@ -84,7 +84,6 @@ public class EveryMvcConfigure {
     }
     }
      * */
-
 
 
     /**
@@ -183,8 +182,13 @@ public class EveryMvcConfigure {
      * TODO WebMvcRegistrationsAdapter 是什么东西？
      * */
 
-    WebMvcRegistrationsAdapter g340g9j340g9;
+    /**
+     * 1. 无论是使用 @EnableWebMvc 还是 WebMvcConfigurationSupport，都会禁止 Spring boot 的自动装配，只有使用 WebMvcConfigurer 才不会
+     * 2. 虽然禁止了 Spring boot 的自动装配，但是 WebMvcConfigurationSupport 本身，还是会注册一系列的MVC相关的bean的，从附加的api可以看到
+     * 3. WebMvcAutoConfiguration 自动装备，其实会创建一个 WebMvcConfigurationSupport 的子类，叫 EnableWebMvcConfiguration
+     */
 
+    WebMvcRegistrationsAdapter g340g9j340g9;
 
     ServletListenerRegistrationBean onionoi34343;
     FilterRegistrationBean eroinoi23224;
