@@ -134,42 +134,26 @@ public class EveryMvcConfigure {
     WebMvcRegistrations eger4334;
 
     /**
-     * WebMvcAutoConfiguration 的配置         :           WebMvcConfigurationSupport + DelegatingWebMvcConfiguration
-     *
-     * + @Configuration
-     * 1， @EnableWebMvc                     ：           会使用 @EnableAutoConfiguration 关于 WebMvcAutoConfiguration 的配置
-     * 3， implements WebMvcConfigurer/WebMvcConfigurerAdapter
-     *                                      ：           不会覆盖 @EnableAutoConfiguration 关于 WebMvcAutoConfiguration 的配置
-     * 4， implements WebMvcConfigurer/WebMvcConfigurerAdapter + @EnableWebMvc
-     *                                      ：           会覆盖 @EnableAutoConfiguration 关于 WebMvcAutoConfiguration 的配置
-     * 5， extends WebMvcConfigurationSupport/DelegatingWebMvcConfiguration
-     *                                      ：           会覆盖 @EnableAutoConfiguration 关于 WebMvcAutoConfiguration 的配置
-     *
-     * 第 4 种情况适用于，想保留 Spring-Boot 默认 MVC 配置 并仅想 补充一些 其他配置，可以只 继承 WebMvcConfigurer；
-     * 同时，最好不使用使用 注解@Configuration，而应该使用 @Component。
-     *
      * Important !
      * To customize the configuration imported by @EnableWebMvc, we should extend
      * the class WebMvcConfigurerAdapter and override the methods we want to do
      * related customization with. Our extended WebMvcConfigurerAdapter methods are
      * called back from WebMvcConfigurationSupport during configuration stage.
      *
-     * WebMvcConfigurer 原理：通过 WebMvcAutoConfiguration 中的 DelegatingWebMvcConfiguration 的子类 体现作用。
+     * [Wrong!]WebMvcConfigurer 原理：通过 WebMvcAutoConfiguration 中的 DelegatingWebMvcConfiguration 的子类 体现作用。
      *
      * 注解 EnableWebMvc 会 导入 DelegatingWebMvcConfiguration extends WebMvcConfigurationSupport；
-     * autocfg 会 导入 WebMvcAutoConfiguration，而 这个 配置
-     *                   依赖 WebMvcConfigurer 并且 排斥 WebMvcConfigurationSupport；
-     * 所以 如果有 @EnableWebMvc（或者），则 WebMvcAutoConfiguration 不生效（情况5 原理）；
+     * autocfg 会 导入 WebMvcAutoConfiguration，而 这个配置 依赖 WebMvcConfigurer 并且 排斥 WebMvcConfigurationSupport；
+     * 所以 如果有 @EnableWebMvc（或者），则使用 WebMvcConfigurationSupport，并且 WebMvcAutoConfiguration 不生效；
      * 如果 需要修改配置，则 必须 实现 WebMvcConfigurer (extends WebMvcConfigurerAdapter) 并且 有 @EnableWebMvc。
-     * 如果 没有 WebMvcConfigurer，则 使用 WebMvcConfigurationSupport（参考注解条件，情况12 原理）；
-     * 如果 有 @EnableWebMvc，则 使用 WebMvcConfigurationSupport（参考注解条件，情况5 原理）；
+     * 如果 没有 WebMvcConfigurer，则 使用 WebMvcConfigurationSupport；
      * 另外，配置 WebMvcAutoConfiguration 内部有逻辑(就是 DelegatingWebMvcConfiguration)，可能会 导入 WebMvcConfigurer（情况4 原理）
      * TODO 情况3 的原理，对情况3的理解需要说明，没有覆盖并不是完全不起作用，而是有所补充；补充部分，就是 WebMvcConfigurer 的实现。
      *
-     * @EnableWebMvc + extends WebMvcConfigurer，在扩展的类中重写父类的方法即可，
-     *      这种方式会屏蔽springboot的@EnableAutoConfiguration中的设置
      * extends WebMvcConfigurer，在扩展的类中重写父类的方法即可，
      *      这种方式依旧使用springboot的@EnableAutoConfiguration中的设置
+     * @EnableWebMvc + extends WebMvcConfigurer，在扩展的类中重写父类的方法即可，
+     *      这种方式会屏蔽springboot的@EnableAutoConfiguration中的设置
      * extends WebMvcConfigurationSupport，在扩展的类中重写父类的方法即可，
      *      这种方式会屏蔽springboot的@EnableAutoConfiguration中的设置
      *
@@ -183,8 +167,8 @@ public class EveryMvcConfigure {
      * */
 
     /**
-     * 1. 无论是使用 @EnableWebMvc 还是 WebMvcConfigurationSupport，都会禁止 Spring boot 的自动装配，只有使用 WebMvcConfigurer 才不会
-     * 2. 虽然禁止了 Spring boot 的自动装配，但是 WebMvcConfigurationSupport 本身，还是会注册一系列的MVC相关的bean的，从附加的api可以看到
+     * 1. 无论是使用 @EnableWebMvc 还是 WebMvcConfigurationSupport，都会禁止 Spring boot 的自动装配，只有使用 WebMvcConfigurer 才不会；
+     * 2. 虽然禁止了 Spring boot 的自动装配，但是 WebMvcConfigurationSupport 本身，还是会注册一系列的 MVC 相关的bean 的，从附加的api 可以看到；
      * 3. WebMvcAutoConfiguration 自动装备，其实会创建一个 WebMvcConfigurationSupport 的子类，叫 EnableWebMvcConfiguration
      */
 

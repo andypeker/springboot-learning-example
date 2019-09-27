@@ -1,5 +1,6 @@
 package com.spring.springboot;
 
+import org.apache.catalina.core.*;
 import org.springframework.boot.autoconfigure.web.ServerProperties;
 import org.springframework.boot.autoconfigure.websocket.JettyWebSocketContainerCustomizer;
 import org.springframework.boot.autoconfigure.websocket.TomcatWebSocketContainerCustomizer;
@@ -13,6 +14,8 @@ import org.springframework.boot.context.embedded.tomcat.TomcatEmbeddedServletCon
 import org.springframework.boot.context.embedded.undertow.UndertowEmbeddedServletContainer;
 import org.springframework.boot.context.embedded.undertow.UndertowEmbeddedServletContainerFactory;
 import org.springframework.stereotype.Component;
+
+import java.util.Collections;
 
 /**
  * @author Frankie Yang on 2019-06-26.
@@ -44,6 +47,15 @@ public class EveryContainer {
         TomcatEmbeddedServletContainer weiuifu23;
         UndertowEmbeddedServletContainer wewe23f23f;
         JettyEmbeddedServletContainer gooi43gnoi2323;
+
+
+
+    StandardServer ssss;
+    StandardService ssv;
+    StandardEngine ergerg;
+    StandardHost sfsdfh;
+    StandardContext efjowefic;
+    StandardWrapper erfkergklw;
 
 
 }
