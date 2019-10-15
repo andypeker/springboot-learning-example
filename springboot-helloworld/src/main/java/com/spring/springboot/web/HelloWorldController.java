@@ -2,7 +2,8 @@ package com.spring.springboot.web;
 
 import com.spring.springboot.service.Hello;
 import com.spring.springboot.service.HelloProperties;
-import com.spring.springboot.service.UserSetting;
+import com.spring.springboot.service.Person;
+import com.spring.springboot.service.UserProp;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -33,13 +34,16 @@ public class HelloWorldController {
     private String guoqing;
 
     @Autowired
-    private UserSetting user;
+    private UserProp user;
 
     @Autowired
     private Hello hello;
 
     @Autowired
     private HelloProperties hp;
+
+    @Autowired
+    private Person p;
 
     @RequestMapping("/")
     public String sayHello() {
@@ -72,6 +76,11 @@ public class HelloWorldController {
         return guoqing;
     }
 
+    @RequestMapping("/person")
+    public String personPropHandler(){
+        return p.introducePerson();
+    }
+
     @RequestMapping("/whyang")
     @ResponseBody
     public String sayFrankie(){
@@ -79,3 +88,20 @@ public class HelloWorldController {
         return "Frankie, Spring Boot run ..";
     }
 }
+
+
+/**
+ *
+ * frankie:springboot-learning-example frankie$ curl http://localhost:38080/xxpath/guoqing
+ * wefwefwefowiefowiegn203gj0j9g3094g3049gj3049jg09j0
+ * frankie:springboot-learning-example frankie$ curl http://localhost:38080/xxpath/hello
+ * hello bidworld-----------123123
+ * frankie:springboot-learning-example frankie$ curl http://localhost:38080/xxpath/msg
+ * bidworld-----------123123
+ * frankie:springboot-learning-example frankie$ curl http://localhost:38080/xxpath/hello2
+ * hola world
+ * frankie:springboot-learning-example frankie$ curl http://localhost:38080/xxpath/msg2
+ * bidworld-----------123123
+ * frankie:springboot-learning-example frankie$
+ *
+ */

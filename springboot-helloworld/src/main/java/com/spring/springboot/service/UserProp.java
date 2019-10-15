@@ -10,7 +10,7 @@ import org.springframework.stereotype.Component;
 //通过该注解加入properties文件内的配置
 //通过prefix设置properties配置的前缀
 @ConfigurationProperties(prefix = "user")
-public class UserSetting {
+public class UserProp {
     private String userName;
     private Long age;
     public String getUserName() {

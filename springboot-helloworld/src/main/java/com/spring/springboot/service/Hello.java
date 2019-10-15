@@ -9,7 +9,7 @@ public class Hello {
     private String msg;
 
     public String sayHello() {
-        return "hello " + msg;
+        return "hello (auto)" + msg;
     }
 
     public String getMsg() {
