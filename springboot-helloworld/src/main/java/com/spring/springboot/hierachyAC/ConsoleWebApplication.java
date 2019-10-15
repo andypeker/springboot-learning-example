@@ -13,9 +13,9 @@ import org.springframework.web.servlet.mvc.Controller;
  */
 @SpringBootApplication(exclude = DispatcherServletAutoConfiguration.class)
 @ComponentScan(
-        basePackages = "com",
+        basePackages = "com"/*,
         excludeFilters =
-        @ComponentScan.Filter({Controller.class, ControllerAdvice.class}))
+        @ComponentScan.Filter({Controller.class, ControllerAdvice.class})*/)
 @EnableAspectJAutoProxy(proxyTargetClass = true)
 public class ConsoleWebApplication  {
 

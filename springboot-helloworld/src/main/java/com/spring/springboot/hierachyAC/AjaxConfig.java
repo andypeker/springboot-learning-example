@@ -22,9 +22,9 @@ import javax.xml.bind.Unmarshaller;
 @EnableWebMvc
 @ComponentScan(
         basePackages = "com",
-        useDefaultFilters = false,
+        useDefaultFilters = false/*,
         includeFilters =
-        @ComponentScan.Filter({AjaxController.class, AjaxControllerAdvice.class}))
+        @ComponentScan.Filter({AjaxController.class, AjaxControllerAdvice.class})*/)
 public class AjaxConfig extends WebMvcConfigurerAdapter {
 
     @PostConstruct

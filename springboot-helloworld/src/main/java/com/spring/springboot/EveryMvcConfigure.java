@@ -14,7 +14,7 @@ import org.springframework.boot.web.servlet.ServletListenerRegistrationBean;
 import org.springframework.boot.web.servlet.ServletRegistrationBean;
 import org.springframework.core.env.AbstractEnvironment;
 import org.springframework.core.env.ConfigurableEnvironment;
-import org.springframework.data.web.config.EnableSpringDataWebSupport;
+//import org.springframework.data.web.config.EnableSpringDataWebSupport;
 import org.springframework.web.context.ConfigurableWebEnvironment;
 import org.springframework.web.context.support.StandardServletEnvironment;
 import org.springframework.web.servlet.config.annotation.*;
@@ -127,7 +127,7 @@ public class EveryMvcConfigure {
     //  ############################################# 原理相似
     EnableWebMvc ff32g34g;
     WebMvcAutoConfiguration f304g9j309j4g0934g;
-    EnableSpringDataWebSupport foweio23;
+//    EnableSpringDataWebSupport foweio23;
     SpringDataWebAutoConfiguration g30gj3409gj0394g;
     WebMvcProperties www;
     WebMvcConfigurer aa22323;

@@ -18,8 +18,8 @@ import java.util.List;
 @EnableWebMvc
 @ComponentScan(
         basePackages = "com",
-        useDefaultFilters = false,
-        includeFilters = @ComponentScan.Filter(WebController.class)
+        useDefaultFilters = false/*,
+        includeFilters = @ComponentScan.Filter(WebController.class)*/
 )
 public class WebConfig extends WebMvcConfigurerAdapter {
 

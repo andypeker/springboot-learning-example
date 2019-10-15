@@ -2,6 +2,8 @@ package com.spring.springboot.web;
 
 import com.spring.springboot.service.Hello;
 import com.spring.springboot.service.UserSetting;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -14,8 +16,10 @@ import static java.lang.System.out;
  *
  * Created by bysocket on 16/4/26.
  */
-@RestController
+@RestController(value = "/www")
 public class HelloWorldController {
+
+    private static final Logger LOGGER = LoggerFactory.getLogger(HelloWorldController.class);
 
     /*@Value("${user.name}")
     private String name1;
@@ -30,6 +34,7 @@ public class HelloWorldController {
 
     @RequestMapping("/")
     public String sayHello() {
+        LOGGER.warn("default page ...");
         return "Hello, World !\n" + user.getUserName() + "\t" + user.getAge();
     }
 

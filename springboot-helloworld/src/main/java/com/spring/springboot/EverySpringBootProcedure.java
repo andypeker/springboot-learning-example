@@ -3,7 +3,6 @@ package com.spring.springboot;
 import com.spring.springboot.initializer2.MyApplicationContextInitializer1;
 import com.spring.springboot.initializer2.MyApplicationContextInitializer2;
 import org.springframework.boot.autoconfigure.logging.AutoConfigurationReportLoggingInitializer;
-import org.springframework.boot.autoconfigure.web.DispatcherServletAutoConfiguration;
 import org.springframework.boot.context.ConfigurationWarningsApplicationContextInitializer;
 import org.springframework.boot.context.ContextIdApplicationContextInitializer;
 import org.springframework.boot.context.config.DelegatingApplicationContextInitializer;

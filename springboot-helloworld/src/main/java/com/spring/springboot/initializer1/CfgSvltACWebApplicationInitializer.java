@@ -16,7 +16,7 @@ public class CfgSvltACWebApplicationInitializer extends AbstractAnnotationConfig
 
         AnnotationConfigWebApplicationContext secureWebAppContext
                 = new AnnotationConfigWebApplicationContext();
-//        secureWebAppContext.register(NormalWebAppConfig.class);
+        secureWebAppContext.register(NormalWebAppConfig.class);
         return secureWebAppContext;
     }
 
