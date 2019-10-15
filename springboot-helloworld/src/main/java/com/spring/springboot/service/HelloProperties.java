@@ -12,6 +12,10 @@ public class HelloProperties {
 
     private String msg = MSG ;
 
+    public String sayHello() {
+        return "hola " + MSG;
+    }
+
     public String getMsg() {
         return msg;
     }
