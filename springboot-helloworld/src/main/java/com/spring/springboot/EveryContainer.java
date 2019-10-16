@@ -15,8 +15,6 @@ import org.springframework.boot.context.embedded.undertow.UndertowEmbeddedServle
 import org.springframework.boot.context.embedded.undertow.UndertowEmbeddedServletContainerFactory;
 import org.springframework.stereotype.Component;
 
-import java.util.Collections;
-
 /**
  * @author Frankie Yang on 2019-06-26.
  */
@@ -26,7 +24,7 @@ class AppContainerCustomizer implements EmbeddedServletContainerCustomizer {
 
     @Override
     public void customize(ConfigurableEmbeddedServletContainer container) {
-        container.setPort(38080);
+//        container.setPort(38080);
         container.setContextPath("/xxpath");
 
     }
