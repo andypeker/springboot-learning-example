@@ -34,21 +34,17 @@ public class HelloWorldController {
     private String guoqing;
 
     @Autowired
-    private UserProp user;
-
-    @Autowired
     private Hello hello;
 
     @Autowired
-    private HelloProperties hp;
+    private UserProp user;
 
     @Autowired
     private Person p;
 
     @RequestMapping("/")
     public String sayHello() {
-        LOGGER.warn("default page ...");
-        return "Hello, World !\n" + user.getUserName() + "\t" + user.getAge();
+        return "default page ...";
     }
 
     @RequestMapping("/hello")
@@ -61,14 +57,9 @@ public class HelloWorldController {
         return hello.getMsg();
     }
 
-    @RequestMapping("/hello2")
-    public String helloPropHandler(){
-        return hp.sayHello();
-    }
-
-    @RequestMapping("/msg2")
-    public String helloPropHandler2(){
-        return hp.getMsg();
+    @RequestMapping("/user")
+    public String userPage() {
+        return "Hello, World !\n" + user.getUserName() + "\t" + user.getAge();
     }
 
     @RequestMapping("/guoqing")
@@ -84,7 +75,7 @@ public class HelloWorldController {
     @RequestMapping("/whyang")
     @ResponseBody
     public String sayFrankie(){
-        out.println("\n\nHelloWorldController\n\n");
+        LOGGER.debug("\n\nHelloWorldController\n\n");
         return "Frankie, Spring Boot run ..";
     }
 }

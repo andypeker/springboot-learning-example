@@ -3,7 +3,7 @@ package com.spring.springboot.autocfg;
 import com.spring.springboot.service.Person;
 import com.spring.springboot.service.PersonProp;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnClass;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnMissingBean;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnProperty;
@@ -17,10 +17,13 @@ import org.springframework.context.annotation.Configuration;
 @Configuration
 @EnableConfigurationProperties(PersonProp.class)
 @ConditionalOnClass(Person.class)
-@ConditionalOnProperty(prefix = "yang", value = "wei", /*matchIfMissing = true*/havingValue = "true")
+@ConditionalOnProperty(prefix = "yang", value = "wei", /*matchIfMissing = true*/havingValue = "defaultvalue")
 public class PersonAutoConfiguration {
     @Autowired
     public PersonProp personProp;
+
+    @Value("${yang.wei}")
+    public String weiwei;
 
     @Bean
     @ConditionalOnMissingBean(Person.class)
@@ -32,7 +35,8 @@ public class PersonAutoConfiguration {
         p.setGender(personProp.getGender());
         p.setId(personProp.getId());
         p.setIncome(personProp.getIncome());
-        p.setInfor(personProp.getInfor());
+//        p.setInfor(personProp.getInfor());
+        p.setInfor(personProp.getInfor() + "?"+ weiwei);
 
         return p;
     }

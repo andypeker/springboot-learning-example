@@ -3,7 +3,6 @@ package com.spring.springboot.service;
 /**
  * @author Frankie Yang on 2018/1/5.
  */
-@Deprecated
 public class Hello {
 
     private String msg;
