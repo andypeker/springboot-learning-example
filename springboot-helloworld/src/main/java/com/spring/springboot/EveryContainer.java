@@ -20,6 +20,18 @@ import java.util.Collections;
 /**
  * @author Frankie Yang on 2019-06-26.
  */
+@Component
+@Deprecated
+class AppContainerCustomizer implements EmbeddedServletContainerCustomizer {
+
+    @Override
+    public void customize(ConfigurableEmbeddedServletContainer container) {
+        container.setPort(38080);
+        container.setContextPath("/xxpath");
+
+    }
+}
+
 public class EveryContainer {
 
 
@@ -57,16 +69,4 @@ public class EveryContainer {
     StandardContext efjowefic;
     StandardWrapper erfkergklw;
 
-
-}
-
-@Component
-class AppContainerCustomizer implements EmbeddedServletContainerCustomizer {
-
-    @Override
-    public void customize(ConfigurableEmbeddedServletContainer container) {
-        container.setPort(38080);
-        container.setContextPath("/xxpath");
-
-    }
 }
