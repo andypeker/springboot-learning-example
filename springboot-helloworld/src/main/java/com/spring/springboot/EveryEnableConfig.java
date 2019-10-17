@@ -51,7 +51,7 @@ public class EveryEnableConfig {
      * 使用 AutoConfiguration 有两种做法
      * 1， 把 @Configuration 的类，加入 *.factories，作为 key EnableAutoConfiguration 的 value；
      *     这样的话，EnableAutoConfiguration 的 Importer 会 以 EnableAutoConfiguration 为类型 load 这个 类。
-     * 2， 创建一个 注解 @EnableXXX；其定义本身 具有 注解 Import，把 @Configuration 的类 作为参数。
+     * 2， 创建一个 注解 @EnableXXX；其定义本身 具有 注解 Import，把 @Configuration 的类 作为参数。 [ 有例子吗？]
      *
      *
      * 接口 ImportSelector 声明了 一个方法 selectImports；
