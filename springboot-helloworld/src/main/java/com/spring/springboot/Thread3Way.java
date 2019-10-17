@@ -14,10 +14,10 @@ public class Thread3Way {
 
 //        way1();
 //        way2();
-        way3();
+//        way3();
+        way4();
 
     }
-
 
     public static void way1() {
         MyThread myThread1 = new MyThread();
@@ -55,7 +55,8 @@ public class Thread3Way {
 
         try {
             Thread.sleep(5000);
-        } catch (InterruptedException ie){}
+        } catch (InterruptedException ie) {
+        }
 
         try {
             // 等待任务执行完，并获得任务执行完的结果
@@ -63,12 +64,42 @@ public class Thread3Way {
             System.out.println(result + "Future result" + new Date());
         } catch (InterruptedException e) {
             e.printStackTrace();
-        } catch (ExecutionException e) { e.printStackTrace(); }
+        } catch (ExecutionException e) {
+            e.printStackTrace();
+        }
+
+    }
+
+    public static void way4() {
+        // 创建异步任务
+        MyFutureTask<String> ft2 = new MyFutureTask(new MyCallerTask());
+
+        // 启动线程
+        new Thread(ft2).start();
+
+        System.out.println("其它操作" + new Date());
+
+        try {
+            Thread.sleep(5000);
+        } catch (InterruptedException ie) {
+        }
+
+        try {
+            // 等待任务执行完，并获得任务执行完的结果
+            String result = String.valueOf(ft2.get());
+            System.out.println("\t\t----" + ft2.getClass().getName());
+            System.out.println(result + "Future result" + new Date());
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        } catch (ExecutionException e) {
+            e.printStackTrace();
+        }
 
     }
 
 }
 
+//  继承，不能多继承
 class MyThread extends Thread {
     @Override
     public void run() {
@@ -79,6 +110,7 @@ class MyThread extends Thread {
     }
 }
 
+//  实现，可以多实现
 class MyRunable implements Runnable {
 
     @Override
@@ -101,3 +133,16 @@ class MyCallerTask implements Callable<String> {
     }
 }
 
+class MyFutureTask<T> extends FutureTask {
+
+    private String name;
+
+    /**真正的任务*/
+    private Callable task;
+
+    public MyFutureTask(Callable c) {
+        super(c);
+        this.task = c;
+        this.name = "MyFutureTask";
+    }
+}
